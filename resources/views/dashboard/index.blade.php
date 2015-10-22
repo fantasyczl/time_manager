@@ -57,11 +57,14 @@
                 </div>
             </div>
 
-            @foreach ($user->tasks as $task)
+            @foreach ($tasks as $task)
                 <div class="row">
                     <div class="col-xs-2">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
                     <div class="col-xs-4">
                         {{ $task->project->name }}
+                    </div>
+                    <div class="col-xs-3">
+                        {{ \App\Lib\Utils\TimeUtils::diffForHuman($task->duration)}}
                     </div>
                 </div>
             @endforeach

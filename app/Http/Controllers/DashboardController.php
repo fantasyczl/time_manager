@@ -19,6 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $tasks = $user->tasks()->orderBy('start_time', 'desc')->get();
         $projects = $user->projects;
 
         $projectArray = array();
@@ -30,6 +31,7 @@ class DashboardController extends Controller
 
         return view('dashboard.index', [
             'user' => $user,
+            'tasks' => $tasks,
             'projects' => $projects,
             'selectProjects' => $projectArray,
         ]);
