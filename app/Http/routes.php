@@ -21,3 +21,11 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('dashboard', 'DashboardController@index');
+    Route::resource('projects', 'ProjectController');
+
+    Route::post('tasks/ajax/addTask', 'TaskController@ajaxAddTask');
+});
