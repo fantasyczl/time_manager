@@ -21,7 +21,7 @@ class Task extends Model
             throw new Exception('duration计算错误');
 
         if ($endTime == null)
-            $endTime = strtotime();
+            $endTime = time();
         else
             $endTime = strtotime($endTime);
         
