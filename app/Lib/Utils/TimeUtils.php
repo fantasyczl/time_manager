@@ -19,11 +19,8 @@ class TimeUtils {
     public static function diffForHuman($timeStr) {
         $duration = time() - strtotime($timeStr);
         $str = self::durationForHuman($duration);
-
-        if (mb_strlen($str) > 2)
-            $str = mb_substr($str, 2);
         
-        return '已进行' . $str;
+        return $str;
     }
 
 
@@ -46,7 +43,7 @@ class TimeUtils {
 
         $sec = $seconds;
 
-        $str = '持续';
+        $str = '';
         if ($hours > 0)
             $str .= $hours . '小时';
 

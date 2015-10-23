@@ -30,4 +30,5 @@ class Task extends Model
         $this->duration = $diff;
         $this->save();
     }
+
 }

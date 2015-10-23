@@ -67,9 +67,9 @@
                     </div>
                     <div class="col-xs-3">
                         @if (empty($task->duration))
-                            {{ \App\Lib\Utils\TimeUtils::diffForHuman($task->start_time) }}
+                            已进行{{ \App\Lib\Utils\TimeUtils::diffForHuman($task->start_time) }}
                         @else
-                            {{ \App\Lib\Utils\TimeUtils::durationForHuman($task->duration)}}
+                            持续{{ \App\Lib\Utils\TimeUtils::durationForHuman($task->duration)}}
                         @endif
                     </div>
                 </div>
@@ -79,15 +79,28 @@
 
         <hr>
 
-        <div class="projects">
-            <h4>项目</h4>
-            @if (count($projects) > 0)
-                @foreach ($projects as $project)
-                    {{ $project->name }}
-                    <br>
-                @endforeach
-            @else
-                你还没有任何项目，<a href="/projects/create">请创建</a>
-            @endif
+        <div class="statistics">
+            <h2>每天情况统计</h2>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4>{{ \App\Lib\Utils\TimeUtils::GetLocalTime(date('Y-m-d H:i:s', time())) }}（24小时内）</h4>
+                        </div>
+
+                        <div class="panel-body">
+                            @foreach ($projects as $project)
+                                <div class="row">
+                                    <div class="col-xs-5"><label for="">{{ $project->name }}</label></div>
+                                    <div class="col-xs-5"><label for="">共{{ $project->spendTimeInDay() }}</label></div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
 @stop
