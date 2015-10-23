@@ -16,9 +16,20 @@ class TimeUtils {
     }
 
 
-    public static function diffForHuman($seconds) {
+    public static function diffForHuman($timeStr) {
+        $duration = time() - strtotime($timeStr);
+        $str = self::durationForHuman($duration);
+
+        if (mb_strlen($str) > 2)
+            $str = mb_substr($str, 2);
+        
+        return '已进行' . $str;
+    }
+
+
+    public static function durationForHuman($seconds) {
         if (empty($seconds))
-            return '进行中';
+            return null;
 
         $hours = $mins = $sec = 0;
 
