@@ -19,10 +19,18 @@
                 return false;
             }
 
+            var date = $('input[name=task_date]').val();
+            var time = $('input[name=task_time]').val();
+            var dateTime = '';
+            if (date && time)
+                dateTime = date + ' ' + time;
+
+            alert(dateTime);
+
             $.ajax({
                 url: '/tasks/ajax/addTask',
                 type: 'POST',
-                data: {'project_id': id},
+                data: {'project_id': id, 'date_time': dateTime},
                 success: function(data) {
                     if (data['err_code'] !== 0) {
                         alert(data['message']);
@@ -47,13 +55,20 @@
 
             <div class="add-task">
                 <div class="row">
+                    <div class="col-xs-1">
+                        <label for="">时间</label>
+                    </div>
+                    <div class="col-xs-2"><input class="form-control" type="date" name="task_date"></div>
+                    
+                    <div class="col-xs-2">
+                        <input type="time" name="task_time" class="form-control">
+                    </div>
                     <div class="col-xs-3">
                         {!! Form::select('task_name', $selectProjects, null, array('class' => 'form-control')) !!}
                     </div>
                     <div class="col-xs-2">
                         <a class="btn btn-success" href="javascript:void(0);" onclick="addTask();">添加</a>
                     </div>
-                    <div class="col-xs-3"><a href="/projects/create">添加项目</a></div>
                 </div>
             </div>
 

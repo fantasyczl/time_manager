@@ -113,7 +113,29 @@ class TaskController extends Controller
                 ]
             );
 
-        $preTask = $user->tasks()->orderBy('start_time', 'desc')->first();
+        $dateTime = date('Y-m-d H:i:s');
+
+        if ($request->has('date_time')) {
+            $dateTime = $request->input('date_time');
+            $pattern = '/\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}/';
+
+            $match = array();
+            $isMatch = preg_match($pattern, $dateTime, $match);
+
+            if ($isMatch && isset($match[0]) && $match[0] == $dateTime) {
+                $dateTime .= ':00';
+                $dateTime = \App\Lib\Utils\TimeUtils::GetUTCTime($dateTime);
+            } else {
+                $dateTime = date('Y-m-d H:i:s');
+            }
+        }
+        var_dump($dateTime);
+        exit();
+
+        $preTask = $user->tasks()
+            ->where('start_time', '<', $dateTime)
+            ->orderBy('start_time', 'desc')
+            ->first();
 
         if ($preTask != null) {
             if ($preTask->project_id == $project->id)
@@ -127,10 +149,11 @@ class TaskController extends Controller
             $preTask->calculateDuration();
         }
 
+
         $task = new Task();
         $task->project_id = $project->id;
         $task->user_id = $user->id;
-        $task->start_time = date('Y-m-d H:i:s');
+        $task->start_time = $dateTime;//date('Y-m-d H:i:s');
         $task->save();
 
         return response()->json([

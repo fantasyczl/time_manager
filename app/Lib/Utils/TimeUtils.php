@@ -16,6 +16,16 @@ class TimeUtils {
     }
 
 
+    public static function GetUTCTime($timeStr, $tz = null) {
+        if (empty($tz))
+            $tz = 'Asia/Shanghai';
+
+        $time = new Carbon($timeStr, $tz);
+        $time->tz = 'UTC';
+        return $time->format('Y-m-d H:i:s');
+    }
+
+
     public static function diffForHuman($timeStr) {
         $duration = time() - strtotime($timeStr);
         $str = self::durationForHuman($duration);

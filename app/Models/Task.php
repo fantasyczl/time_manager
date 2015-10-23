@@ -18,7 +18,7 @@ class Task extends Model
 
     public function calculateDuration($endTime = null) {
         if ($this->duration != 0)
-            throw new Exception('duration计算错误');
+            throw new \Exception('duration计算错误');
 
         if ($endTime == null)
             $endTime = time();
