@@ -46,25 +46,28 @@
 @stop
 
 @section ('content')
-        <h2> Dashboard </h2>
+
+    <div class="col-xs-12 col-md-6">
+        <h2>时间线</h2>
+        <hr>
 
         <div class="tasks">
-            <h4>时间线</h4>
+            <h4>添加任务</h4>
 
             <div class="add-task">
                 <div class="row">
                     <!--
-                    <div class="col-xs-1">
+                        <div class="col-xs-1">
                         <label for="">时间</label>
-                    </div>
-                    <div class="col-xs-2"><input class="form-control" type="date" name="task_date"></div>
-                    
-                    <div class="col-xs-2">
+                        </div>
+                        <div class="col-xs-2"><input class="form-control" type="date" name="task_date"></div>
+
+                        <div class="col-xs-2">
                         <input type="time" name="task_time" class="form-control">
-                    </div>
+                        </div>
                     -->
 
-                    <div class="col-xs-3">
+                    <div class="col-xs-5">
                         {!! Form::select('task_name', $selectProjects, null, array('class' => 'form-control')) !!}
                     </div>
                     <div class="col-xs-2">
@@ -77,11 +80,11 @@
 
             @foreach ($tasks as $task)
                 <div class="row">
-                    <div class="col-xs-2">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
+                    <div class="col-xs-4">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
                     <div class="col-xs-4">
                         {{ $task->project->name }}
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-xs-4">
                         @if (empty($task->duration))
                             已进行{{ \App\Lib\Utils\TimeUtils::diffForHuman($task->start_time) }}
                         @else
@@ -93,13 +96,17 @@
 
         </div>
 
-        <hr>
+    </div>
 
+    <div class="col-xs-12 col-md-6">
+        <h2>每天情况统计</h2>
+        <hr>
+        
         <div class="statistics">
-            <h2>每天情况统计</h2>
+            <h4>24小时内概况</h4>
 
             <div class="row">
-                <div class="col-xs-12 col-md-4">
+                <div class="col-xs-12 col-md-10">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4>{{ \App\Lib\Utils\TimeUtils::GetLocalTime(date('Y-m-d H:i:s', time())) }}（24小时内）</h4>
@@ -118,5 +125,6 @@
             </div>
 
         </div>
+    </div>
 
 @stop
