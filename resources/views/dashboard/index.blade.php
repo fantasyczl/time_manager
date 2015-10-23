@@ -25,8 +25,6 @@
             if (date && time)
                 dateTime = date + ' ' + time;
 
-            alert(dateTime);
-
             $.ajax({
                 url: '/tasks/ajax/addTask',
                 type: 'POST',

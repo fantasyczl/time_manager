@@ -129,8 +129,6 @@ class TaskController extends Controller
                 $dateTime = date('Y-m-d H:i:s');
             }
         }
-        var_dump($dateTime);
-        exit();
 
         $preTask = $user->tasks()
             ->where('start_time', '<', $dateTime)
