@@ -144,7 +144,7 @@ class TaskController extends Controller
                     ]
                 );
 
-            $preTask->calculateDuration();
+            $preTask->calculateDuration($dateTime);
         }
 
 

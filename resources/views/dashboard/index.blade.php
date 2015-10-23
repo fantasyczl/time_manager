@@ -53,6 +53,7 @@
 
             <div class="add-task">
                 <div class="row">
+                    <!--
                     <div class="col-xs-1">
                         <label for="">时间</label>
                     </div>
@@ -61,6 +62,8 @@
                     <div class="col-xs-2">
                         <input type="time" name="task_time" class="form-control">
                     </div>
+                    -->
+
                     <div class="col-xs-3">
                         {!! Form::select('task_name', $selectProjects, null, array('class' => 'form-control')) !!}
                     </div>
