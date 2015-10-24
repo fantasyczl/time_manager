@@ -26,8 +26,13 @@ class TimeUtils {
     }
 
 
-    public static function diffForHuman($timeStr) {
+    public static function diff($timeStr) {
         $duration = time() - strtotime($timeStr);
+        return $duration;
+    }
+
+    public static function diffForHuman($timeStr) {
+        $duration = self::diff($timeStr);
         $str = self::durationForHuman($duration);
         
         return $str;

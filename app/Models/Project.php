@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
+use App\Lib\Utils\TimeUtils;
 
 class Project extends Model
 {
@@ -33,8 +34,12 @@ class Project extends Model
             ->get();
 
         $total = 0;
-        foreach ($tasks as $task)
+        foreach ($tasks as $task) {
+            if ($task->duration == 0)
+                $task->duration = TimeUtils::diff($task->start_time);
+            
             $total += $task->duration;
+        }
 
         if ($total == 0)
             return '0分';
