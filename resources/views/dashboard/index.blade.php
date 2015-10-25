@@ -82,7 +82,9 @@
                 <div class="row">
                     <div class="col-xs-4">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
                     <div class="col-xs-4">
-                        {{ $task->project->name }}
+                        <a href="/projects/{{ $task->project->id }}">
+                            {{ $task->project->name }}
+                        </a>
                     </div>
                     <div class="col-xs-4">
                         @if (empty($task->duration))
