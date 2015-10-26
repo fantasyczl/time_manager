@@ -65,6 +65,12 @@ class Project extends Model
             $total += $task->duration;
         }
         
+        return $total;
+    }
+
+
+    public function spendTimeForHuman() {
+        $total = $this->spendTime();
         return \App\Lib\Utils\TimeUtils::durationForHuman($total);
     }
 }

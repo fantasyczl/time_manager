@@ -41,11 +41,24 @@
         <h4>时间投入</h4>
 
         <div class="row">
-            <div class="col-xs-3"><label for="">共投入时间</label></div>
+            <div class="col-xs-6 col-md-1"><label for="">共投入时间</label></div>
 
-            <div class="col-xs-5">
-                {{ $project->spendTime() }}
+            <div class="col-xs-6 col-md-2">
+                {{ $project->spendTimeForHuman() }}
             </div>
+
+            <div class="col-xs-6 col-md-1">
+                跨度{{count($timeArr)}}天 
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <?php
+                $durationPerDay = $project->spendTime() / count($timeArr);
+                $timeHuman = \App\Lib\Utils\TimeUtils::durationForHuman($durationPerDay);
+                ?>
+                平均每天{{ $timeHuman }}
+            </div>
+
         </div>
 
         <div class="row">
