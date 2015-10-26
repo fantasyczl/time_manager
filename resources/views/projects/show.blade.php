@@ -59,12 +59,12 @@
 
                     @foreach ($timeArr as $key => $value)
                         <tr>
-                            <th>
+                            <td>
                                 {{ $key }}
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 {{ $value }}
-                            </th>
+                            </td>
                         </tr>
                     @endforeach
                 </table>
