@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Auth;
+use Validator;
 
 use App\Models\Project;
 
@@ -89,7 +90,15 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+
+        if ($project == null)
+            abort(404);
+
+        return view('projects.edit', [
+            'project' => $project,
+        ]);
+
     }
 
     /**
@@ -101,7 +110,32 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::find($id);
+
+        if ($project == null)
+            abort(404);
+       
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|max:100',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        $project->name = $request->input('name');
+
+        if ($request->has('description'))
+            $project->description = $request->input('description');
+        else
+            $project->description = null;
+
+        $project->save();
+
+        return redirect('/projects/' . $project->id);
     }
 
     /**
