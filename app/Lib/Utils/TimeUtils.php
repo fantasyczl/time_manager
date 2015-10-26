@@ -5,6 +5,17 @@ namespace App\Lib\Utils;
 use Carbon\Carbon;
 
 class TimeUtils {
+    const TZ_LOCAL = 'Asia/Shanghai';
+    const TZ_UTC = 'UTC';
+
+    public static function GetDayLocal($timeStr = null) {
+        $tz = self::TZ_LOCAL;
+        $time = new Carbon($timeStr);
+        $time->tz = $tz;
+        //$time->hour(0)->minute(0)->second(0);
+
+        return $time->toDateString();
+    }
     
     public static function GetLocalTime($timeStr, $tz = null) {
         if (empty($tz))

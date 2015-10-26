@@ -11,6 +11,9 @@ use Validator;
 
 use App\Models\Project;
 
+use App\Lib\Utils\TimeUtils;
+use Carbon\Carbon;
+
 
 class ProjectController extends Controller
 {
@@ -77,8 +80,30 @@ class ProjectController extends Controller
         if ($project == null)
             abort(404);
 
+        $spendTime = array();
+
+        $firstTask = $project->tasks()
+            ->orderBy('start_time', 'asc')->first();
+
+        $timeArr = array();
+
+        if ($firstTask) {
+            $today = new Carbon(TimeUtils::GetDayLocal());
+            $firstDay = new Carbon(TimeUtils::GetDayLocal($firstTask->start_time));
+
+            do {
+                $dayStr = $firstDay->toDateString();
+                $time = $project->spendTimeInDay($dayStr);
+                $timeArr[$dayStr] = $time;
+                $firstDay->addDay();
+            } while($today->gte($firstDay));
+        }
+
+        $timeArr = array_reverse($timeArr);
+
         return view('projects.show', [
             'project' => $project,
+            'timeArr' => $timeArr,
         ]);
     }
 

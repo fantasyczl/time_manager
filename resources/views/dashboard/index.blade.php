@@ -105,13 +105,11 @@
         <hr>
         
         <div class="statistics">
-            <h4>24小时内概况</h4>
-
             <div class="row">
                 <div class="col-xs-12 col-md-10">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4>{{ \App\Lib\Utils\TimeUtils::GetLocalTime(date('Y-m-d H:i:s', time())) }}（24小时内）</h4>
+                            <h4>{{ \App\Lib\Utils\TimeUtils::GetDayLocal() }}</h4>
                         </div>
 
                         <div class="panel-body">

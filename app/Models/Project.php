@@ -19,12 +19,19 @@ class Project extends Model
     }
 
 
-    public function spendTimeInDay($end = null) {
-        if (empty($end))
-            $end = Carbon::now();
+    public function spendTimeInDay($day = null) {
+        $tz = 'Asia/Shanghai';
 
-        $start = clone $end;
-        $start->subDay();
+        if (empty($day))
+            $start = Carbon::now($tz);
+        else 
+            $start = new Carbon($day, $tz);
+
+        $start->hour(0)->minute(0)->second(0);
+        $start->tz = 'UTC';
+
+        $end = clone $start;
+        $end->addDay();
 
         $start_time = $start->toDateTimeString();
         $end_time = $end->toDateTimeString();
@@ -44,6 +51,20 @@ class Project extends Model
         if ($total == 0)
             return '0分';
 
+        return \App\Lib\Utils\TimeUtils::durationForHuman($total);
+    }
+
+
+    public function spendTime() {
+        $total = 0;
+
+        foreach ($this->tasks as $task) {
+            if ($task->duration == 0)
+                $this->duration = TimeUtils::diff($task->start_time);
+
+            $total += $task->duration;
+        }
+        
         return \App\Lib\Utils\TimeUtils::durationForHuman($total);
     }
 }

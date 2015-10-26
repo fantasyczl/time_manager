@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css.map" type="text/css">
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css">
 
+        <link rel="stylesheet" href="/css/main.css" type="text/css">
+
         @yield ('css')
 
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>
