@@ -21,9 +21,11 @@
                 <td>
                     <a href="/projects/{{ $project->id }}">{{ $project->name }}</a>
                 </td>
+
                 <td>
                     {{ mb_substr($project->description, 0, 10) }}
                 </td>
+
                 <td>
                     {{ $project->created_at }}
                 </td>
