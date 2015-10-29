@@ -12,5 +12,11 @@
                 <a href="/projects">项目</a>
             </li>
         </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="/auth/logout">退出</a>
+            </li>
+        </ul>
     </div>
 </nav>
