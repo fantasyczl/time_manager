@@ -53,7 +53,10 @@
 
             <div class="col-xs-6 col-md-2">
                 <?php
-                $durationPerDay = $project->spendTime() / count($timeArr);
+                $durationPerDay = 0;
+                if (count($timeArr) > 0) {
+                    $durationPerDay = $project->spendTime() / count($timeArr);
+                }
                 $timeHuman = \App\Lib\Utils\TimeUtils::durationForHuman($durationPerDay);
                 ?>
                 平均每天{{ $timeHuman }}
