@@ -21,7 +21,9 @@ class DashboardController extends Controller
         $user = Auth::user();
         $tasks = $user->tasks()
             ->orderBy('start_time', 'desc')
-            ->take(30);
+            ->take(20)
+            ->get();
+
         $projects = $user->projects;
 
         $projectArray = array();
