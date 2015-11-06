@@ -19,7 +19,9 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $tasks = $user->tasks()->orderBy('start_time', 'desc')->get();
+        $tasks = $user->tasks()
+            ->orderBy('start_time', 'desc')
+            ->take(30);
         $projects = $user->projects;
 
         $projectArray = array();

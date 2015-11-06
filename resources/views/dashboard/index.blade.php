@@ -67,11 +67,11 @@
                         </div>
                     -->
 
-                    <div class="col-xs-5">
+                    <div class="col-xs-7">
                         {!! Form::select('task_name', $selectProjects, null, array('class' => 'form-control')) !!}
                     </div>
-                    <div class="col-xs-2">
-                        <a class="btn btn-success" href="javascript:void(0);" onclick="addTask();">添加</a>
+                    <div class="col-xs-5">
+                        <a class="btn btn-success" style="width:100%;" href="javascript:void(0);" onclick="addTask();">添加</a>
                     </div>
                 </div>
             </div>
@@ -96,6 +96,13 @@
                 </div>
             @endforeach
 
+            <div class="row">
+                <div class="col-xs-12">
+                    <div>
+                        <a href="/tasks">更多</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -106,7 +113,7 @@
         
         <div class="statistics">
             <div class="row">
-                <div class="col-xs-12 col-md-10">
+                <div class="col-xs-12 col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4>{{ \App\Lib\Utils\TimeUtils::GetDayLocal() }}</h4>
