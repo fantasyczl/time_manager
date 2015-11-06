@@ -6,6 +6,10 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
+
+        #time_label {
+            display: none;
+        }
     </style>
 @stop
 
@@ -42,6 +46,15 @@
                 }
             });
         }
+
+
+        function showTimeLabel() {
+            var obj = $('#time_label');
+            if (obj.css('display') == 'none') 
+                obj.css('display', 'block')
+            else
+                obj.css('display', 'none')
+        }
     </script>
 @stop
 
@@ -56,17 +69,26 @@
 
             <div class="add-task">
                 <div class="row">
-                    <!--
-                        <div class="col-xs-1">
+                    <div class="col-xs-12">
+                        <a href="javascript:void(0);" onclick="showTimeLabel();">显示时间</a>
+                    </div>
+                </div>
+
+                <div class="row" id="time_label">
+                    <div class="col-xs-2 col-md-2">
                         <label for="">时间</label>
-                        </div>
-                        <div class="col-xs-2"><input class="form-control" type="date" name="task_date"></div>
+                    </div>
 
-                        <div class="col-xs-2">
+                    <div class="col-xs-5 col-md-5">
+                        <input class="form-control" type="date" name="task_date">
+                    </div>
+
+                    <div class="col-xs-5 col-md-5">
                         <input type="time" name="task_time" class="form-control">
-                        </div>
-                    -->
+                    </div>
+                </div>
 
+                <div class="row">
                     <div class="col-xs-7">
                         {!! Form::select('task_name', $selectProjects, null, array('class' => 'form-control')) !!}
                     </div>
