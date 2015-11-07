@@ -1,5 +1,9 @@
 @extends ('layouts.base')
 
+@section ('title')
+    创建项目
+@stop
+
 
 @section ('body')
     <div class="container-fluid">

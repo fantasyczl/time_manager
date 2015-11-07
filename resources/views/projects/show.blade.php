@@ -1,5 +1,9 @@
 @extends ('layouts.main')
 
+@section ('title')
+    {{ $project->name }}
+@stop
+
 @section ('css')
     <style>
     </style>

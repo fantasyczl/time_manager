@@ -1,5 +1,9 @@
 @extends ('layouts.main')
 
+@section ('title')
+    Dashboard
+@stop
+
 @section ('css')
     <style>
         .row {
