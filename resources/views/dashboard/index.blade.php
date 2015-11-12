@@ -84,11 +84,16 @@
                     </div>
 
                     <div class="col-xs-5 col-md-5">
-                        <input class="form-control" type="date" name="task_date">
+                        <input class="form-control" type="date" name="task_date" value="{{ date('Y-m-d') }}">
                     </div>
 
                     <div class="col-xs-5 col-md-5">
-                        <input type="time" name="task_time" class="form-control">
+                        <?php
+                        $localDate = \App\Lib\Utils\TimeUtils::GetLocalTime(date('Y-m-d H:i:s'));
+                        $localTime = strtotime($localDate);
+                        $taskTime = date('H:i', $localTime);
+                        ?>
+                        <input type="time" name="task_time" class="form-control" value="{{ $taskTime }}">
                     </div>
                 </div>
 
