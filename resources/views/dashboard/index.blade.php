@@ -29,8 +29,12 @@
 
             var date = $('input[name=task_date]').val();
             var time = $('input[name=task_time]').val();
+
             var dateTime = '';
-            if (date && time)
+
+            var display = $('#time_label').css('display');
+
+            if (date && time && display != 'none')
                 dateTime = date + ' ' + time;
 
             $.ajax({

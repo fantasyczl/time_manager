@@ -139,7 +139,7 @@ class TaskController extends Controller
         }
 
         $preTask = $user->tasks()
-            ->where('start_time', '<', $dateTime)
+            ->where('start_time', '<=', $dateTime)
             ->orderBy('start_time', 'desc')
             ->first();
 
