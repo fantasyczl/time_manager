@@ -6,11 +6,6 @@
 
 @section ('css')
     <style>
-        .row {
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-
         #time_label {
             display: none;
         }
