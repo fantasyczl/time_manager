@@ -22,6 +22,9 @@
                 return false;
             }
 
+            $('#add_task_btn').addClass('disabled');
+            $('#add_task_btn').text('添加中...');
+
             var date = $('input[name=task_date]').val();
             var time = $('input[name=task_time]').val();
 
@@ -101,7 +104,7 @@
                         {!! Form::select('task_name', $selectProjects, null, array('class' => 'form-control')) !!}
                     </div>
                     <div class="col-xs-5">
-                        <a class="btn btn-success" style="width:100%;" href="javascript:void(0);" onclick="addTask();">添加</a>
+                        <a id="add_task_btn" class="btn btn-success" style="width:100%;" href="javascript:void(0);" onclick="addTask();">添加</a>
                     </div>
                 </div>
             </div>
