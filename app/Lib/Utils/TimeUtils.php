@@ -8,6 +8,16 @@ class TimeUtils {
     const TZ_LOCAL = 'Asia/Shanghai';
     const TZ_UTC = 'UTC';
 
+    public static $weekdays = array(
+        '星期日',
+        '星期一',
+        '星期二',
+        '星期三',
+        '星期四',
+        '星期五',
+        '星期六',
+    );
+
     public static function GetDayLocal($timeStr = null) {
         $tz = self::TZ_LOCAL;
         $time = new Carbon($timeStr);
@@ -83,6 +93,14 @@ class TimeUtils {
         return  $str;
     }
 
+
+    public static function GetLocalWeekDay($timeStr = null) {
+        $tz = self::TZ_LOCAL;
+        $time = new Carbon($timeStr);
+        $time->tz = $tz;
+
+        $index = $time->dayOfWeek;
+
+        return self::$weekdays[$index];
+    }
 }
-
-

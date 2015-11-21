@@ -81,6 +81,7 @@
                         <tr>
                             <td>
                                 {{ $key }}
+                                {{ \App\Lib\Utils\TimeUtils::GetLocalWeekDay($key) }}
                             </td>
                             <td>
                                 {{ $value }}

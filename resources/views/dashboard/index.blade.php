@@ -146,7 +146,7 @@
                 <div class="col-xs-12 col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4>{{ \App\Lib\Utils\TimeUtils::GetDayLocal() }}</h4>
+                            <h4>{{ \App\Lib\Utils\TimeUtils::GetDayLocal() }} {{ \App\Lib\Utils\TimeUtils::GetLocalWeekDay()}}</h4>
                         </div>
 
                         <div class="panel-body">
