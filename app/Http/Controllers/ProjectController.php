@@ -93,7 +93,7 @@ class ProjectController extends Controller
 
             do {
                 $dayStr = $firstDay->toDateString();
-                $time = $project->spendTimeInDay($dayStr);
+                $time = $project->spendTimeInDayForHuman($dayStr);
                 $timeArr[$dayStr] = $time;
                 $firstDay->addDay();
             } while($today->gte($firstDay));
