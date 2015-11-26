@@ -156,7 +156,11 @@
                         <div class="panel-body">
                             @foreach ($projects as $project)
                                 <div class="row">
-                                    <div class="col-xs-5"><label for="">{{ $project->name }}</label></div>
+                                    <div class="col-xs-5">
+                                        <a href="/projects/{{ $project->id }}">
+                                            <label for="">{{ $project->name }}</label>
+                                        </a>
+                                    </div>
                                     <div class="col-xs-5"><label for="">共{{ $project->spendTimeInDayForHuman() }}</label></div>
                                 </div>
                             @endforeach
