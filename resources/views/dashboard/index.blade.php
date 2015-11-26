@@ -42,6 +42,7 @@
                 success: function(data) {
                     if (data['err_code'] !== 0) {
                         alert(data['message']);
+                        location.reload();
                         return false;
                     }
 
@@ -156,7 +157,7 @@
                             @foreach ($projects as $project)
                                 <div class="row">
                                     <div class="col-xs-5"><label for="">{{ $project->name }}</label></div>
-                                    <div class="col-xs-5"><label for="">共{{ $project->spendTimeInDay() }}</label></div>
+                                    <div class="col-xs-5"><label for="">共{{ $project->spendTimeInDayForHuman() }}</label></div>
                                 </div>
                             @endforeach
                         </div>

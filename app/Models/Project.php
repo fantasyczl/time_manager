@@ -48,6 +48,13 @@ class Project extends Model
             $total += $task->duration;
         }
 
+        return $total;
+    }
+
+
+    public function spendTimeInDayForHuman($day = null) {
+        $total = $this->spendTimeInDay($day);
+
         if ($total == 0)
             return '0分';
 

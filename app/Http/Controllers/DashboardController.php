@@ -24,7 +24,12 @@ class DashboardController extends Controller
             ->take(20)
             ->get();
 
-        $projects = $user->projects;
+        $projects = $user->projects->all();
+
+        usort($projects, function($a, $b) {
+            $diff = $a->spendTimeInDay() - $b->spendTimeInDay();
+            return -$diff;
+        });
 
         $projectArray = array();
         $projectArray[''] = '-';
