@@ -84,7 +84,7 @@ class TimeUtils {
         if ($hours > 0)
             $str .= $hours . '小时';
 
-        if ($mins > 0)
+        if ($mins > 0 || $hours > 0)
             $str .= $mins . '分';
 
         if ($sec > 0)
