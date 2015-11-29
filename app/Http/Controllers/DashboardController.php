@@ -34,7 +34,7 @@ class DashboardController extends Controller
         $projectArray = array();
         $projectArray[''] = '-';
 
-        foreach ($projects as $project) {
+        foreach ($user->projects as $project) {
             $projectArray[$project->id] = $project->name;
         }
 

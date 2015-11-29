@@ -24,7 +24,7 @@ class TaskController extends Controller
 
         $tasks = $user->tasks()
             ->orderBy('start_time', 'desc')
-            ->get();
+            ->paginate(15);
 
         return view('tasks.index', [
             'tasks' => $tasks,

@@ -1,6 +1,11 @@
 @extends ('layouts.main')
 
 
+@section ('title')
+    时间线
+@stop
+
+
 @section ('content')
     <div class="tasks">
         @foreach ($tasks as $task)
@@ -20,5 +25,7 @@
                 </div>
             </div>
         @endforeach
+
+        {!! $tasks->render() !!}
     </div>
 @stop
