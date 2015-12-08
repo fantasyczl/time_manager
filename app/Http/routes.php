@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('projects', 'ProjectController');
 
     Route::post('tasks/ajax/addTask', 'TaskController@ajaxAddTask');
-    Route::get('tasks', 'TaskController@index');
+    Route::resource('tasks', 'TaskController');
 
     Route::get('days', 'DaysController@index');
 });

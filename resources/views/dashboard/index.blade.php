@@ -114,8 +114,9 @@
 
             @foreach ($tasks as $task)
                 <div class="row">
+                    <div class="col-xs-1"><a href="/tasks/{{ $task->id }}">{{ $task->id }}</a></div>
                     <div class="col-xs-4">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-3">
                         <a href="/projects/{{ $task->project->id }}">
                             {{ $task->project->name }}
                         </a>

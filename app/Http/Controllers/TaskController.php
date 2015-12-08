@@ -60,7 +60,11 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::find($id);
+
+        return view('tasks.show', [
+            'task' => $task,
+        ]);
     }
 
     /**
@@ -71,7 +75,17 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = Task::find($id);
+
+        $projects = array();
+        foreach (Project::all() as $pro) {
+            $projects[$pro->id] = $pro->name;
+        }
+
+        return view('tasks.edit', [
+            'task' => $task,
+            'projects' => $projects,
+        ]);
     }
 
     /**
@@ -83,7 +97,12 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::find($id);
+
+        $task->project_id = $request->input('project_id');
+        $task->save();
+
+        return redirect('/tasks/' . $id)->with('successMessages', '修改成功');
     }
 
     /**
