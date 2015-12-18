@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Auth;
-
 use App\Models\Project;
 use App\Models\Task;
 
@@ -75,10 +74,12 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
+
         $task = Task::find($id);
 
         $projects = array();
-        foreach (Project::all() as $pro) {
+        foreach ($user->projects as $pro) {
             $projects[$pro->id] = $pro->name;
         }
 
