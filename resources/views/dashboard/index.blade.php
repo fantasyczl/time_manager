@@ -86,16 +86,18 @@
                         <label for="">时间</label>
                     </div>
 
+                    <?php
+                    $localDate = \App\Lib\Utils\TimeUtils::GetLocalTime(date('Y-m-d H:i:s'));
+                    $localTime = strtotime($localDate);
+                    $taskDate = date('Y-m-d', $localTime);
+                    $taskTime = date('H:i', $localTime);
+                    ?>
+
                     <div class="col-xs-5 col-md-5">
-                        <input class="form-control" type="date" name="task_date" value="{{ date('Y-m-d') }}">
+                        <input class="form-control" type="date" name="task_date" value="{{ $taskDate }}">
                     </div>
 
                     <div class="col-xs-5 col-md-5">
-                        <?php
-                        $localDate = \App\Lib\Utils\TimeUtils::GetLocalTime(date('Y-m-d H:i:s'));
-                        $localTime = strtotime($localDate);
-                        $taskTime = date('H:i', $localTime);
-                        ?>
                         <input type="time" name="task_time" class="form-control" value="{{ $taskTime }}">
                     </div>
                 </div>
@@ -111,6 +113,13 @@
             </div>
 
             <hr>
+
+            <div class="row">
+                <div class="col-xs-1"><label for="">ID</label></div>
+                <div class="col-xs-4"><label for="">开始时间</label></div>
+                <div class="col-xs-3"><label for="">项目名</label></div>
+                <div class="col-xs-4"><label for="">持续时间</label></div>
+            </div>
 
             @foreach ($tasks as $task)
                 <div class="row">
