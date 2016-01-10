@@ -13,14 +13,17 @@
 @stop
 
 @section ('content')
+    <div class="row">
+        <div class="col-xs-4" >
+            <h2 style="text-align: center">{{ $date }}</h2>
+        </div>
+    </div>
 
     <div class="col-xs-12 col-md-6">
-        <h2>时间线</h2>
+        <h4>时间线</h4>
         <hr>
 
         <div class="tasks">
-            <hr>
-
             <div class="row">
                 <div class="col-xs-1"><label for="">ID</label></div>
                 <div class="col-xs-4"><label for="">开始时间</label></div>
@@ -51,7 +54,7 @@
     </div>
 
     <div class="col-xs-12 col-md-6">
-        <h2>每天情况统计</h2>
+        <h4>每天情况统计</h4>
         <hr>
         
         <div class="statistics">
@@ -70,7 +73,7 @@
                                             <label for="">{{ $project->name }}</label>
                                         </a>
                                     </div>
-                                    <div class="col-xs-5"><label for="">共{{ $project->spendTimeInDayForHuman() }}</label></div>
+                                    <div class="col-xs-5"><label for="">共{{ $project->spendTimeInDayForHuman($date) }}</label></div>
                                 </div>
                             @endforeach
                         </div>

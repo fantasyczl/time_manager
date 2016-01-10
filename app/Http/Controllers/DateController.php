@@ -49,8 +49,8 @@ class DateController extends Controller {
         $params['tasks'] = $tasks;
 
         $projects = $user->projects->all();
-        usort($projects, function($a, $b) {
-            $diff = $a->spendTimeInDay() - $b->spendTimeInDay();
+        usort($projects, function($a, $b) use ($dateStr) {
+            $diff = $a->spendTimeInDay($dateStr) - $b->spendTimeInDay($dateStr);
             return -$diff;
         });
         $params['projects'] = $projects;
