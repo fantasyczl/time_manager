@@ -88,8 +88,8 @@ class ProjectController extends Controller
         $timeArr = array();
 
         if ($firstTask) {
-            $today = new Carbon(TimeUtils::GetDayLocal());
-            $firstDay = new Carbon(TimeUtils::GetDayLocal($firstTask->start_time));
+            $today = new Carbon(TimeUtils::GetLocalDate());
+            $firstDay = new Carbon(TimeUtils::GetLocalDate($firstTask->start_time));
 
             do {
                 $dayStr = $firstDay->toDateString();

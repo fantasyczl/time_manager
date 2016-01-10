@@ -18,11 +18,11 @@ class TimeUtils {
         '星期六',
     );
 
-    public static function GetDayLocal($timeStr = null) {
+
+    public static function GetLocalDate($timeStr = null) {
         $tz = self::TZ_LOCAL;
         $time = new Carbon($timeStr);
         $time->tz = $tz;
-        //$time->hour(0)->minute(0)->second(0);
 
         return $time->toDateString();
     }
@@ -102,5 +102,18 @@ class TimeUtils {
         $index = $time->dayOfWeek;
 
         return self::$weekdays[$index];
+    }
+
+
+    public static function GetDurationDay($timeStr = null, $tz = self::TZ_LOCAL) {
+        $begin = new Carbon($timeStr, $tz);
+
+        $end = clone $begin;
+        $end->addDay()->subSecond();
+
+        $begin->tz = self::TZ_UTC;
+        $end->tz = self::TZ_UTC;
+
+        return [$begin, $end];
     }
 }
