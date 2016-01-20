@@ -1,6 +1,5 @@
 @extends ('layouts.base')
 
-
 @section ('title')
 
 @stop
@@ -10,7 +9,6 @@
     <style>
     </style>
 @stop
-
 
 @section ('body')
     <div class="container">

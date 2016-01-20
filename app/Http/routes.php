@@ -40,6 +40,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('tasks/ajax/addTask', 'TaskController@ajaxAddTask');
     Route::resource('tasks', 'TaskController');
 
+    Route::get('email', 'EmailController@getEmail');
+    Route::post('email', 'EmailController@postEmail');
+
     Route::group(['prefix' => 'date'], function() {
         Route::get('/', 'DateController@index');
         Route::get('{y}', 'DaysController@getYear');
