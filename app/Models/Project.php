@@ -66,8 +66,9 @@ class Project extends Model
         $total = 0;
 
         foreach ($this->tasks as $task) {
-            if ($task->duration == 0)
-                $this->duration = TimeUtils::diff($task->start_time);
+            if ($task->duration == 0) {
+                $task->duration = TimeUtils::diff($task->start_time);
+            }
 
             $total += $task->duration;
         }
@@ -78,6 +79,6 @@ class Project extends Model
 
     public function spendTimeForHuman() {
         $total = $this->spendTime();
-        return \App\Lib\Utils\TimeUtils::durationForHuman($total);
+        return TimeUtils::durationForHuman($total);
     }
 }
