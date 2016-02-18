@@ -1,6 +1,31 @@
 @extends ('layouts.main')
 
+@section ('title')
+    Task: {{ $task->project->name }}
+@stop
 
 @section ('content')
-    <div class="tasks"><a href="/tasks/{{ $task->id }}/edit">编辑</a></div>
+    <div class="task">
+        <a href="/tasks/{{ $task->id }}/edit">编辑</a>
+
+        <h2>Task: {{ $task->project->name }}</h2>
+        <div class="row">
+            <div class="col-xs-3">
+                <label for="">项目名称</label>
+            </div>
+            <div class="col-xs-9">{{ $task->project->name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                <label for="">开始时间</label>
+            </div>
+            <div class="col-xs-9">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                <label for="">持续时间</label>
+            </div>
+            <div class="col-xs-9">{{ \App\Lib\Utils\TimeUtils::diffForHuman($task->start_time) }}</div>
+        </div>
+    </div>
 @stop

@@ -1,17 +1,18 @@
 @extends ('layouts.main')
 
-
 @section ('title')
     时间线
 @stop
-
 
 @section ('content')
     <div class="tasks">
         @foreach ($tasks as $task)
             <div class="row">
-                <div class="col-xs-4">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
-                <div class="col-xs-4">
+                <div class="col-xs-2">
+                    <a href="/tasks/{{ $task->id }}">{{ $task->id }}</a>
+                </div>
+                <div class="col-xs-3">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
+                <div class="col-xs-3">
                     <a href="/projects/{{ $task->project->id }}">
                         {{ $task->project->name }}
                     </a>
