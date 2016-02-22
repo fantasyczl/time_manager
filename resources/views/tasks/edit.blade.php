@@ -36,5 +36,15 @@
             </div>
 
         {!! Form::close() !!}
+
+        <div class="delete">
+            {!! Form::open(['url' => '/tasks/' . $task->id, 'method' => 'DELETE']) !!}
+            <div class="form-group">
+                <div class="col-xs-offset-8">
+                    {!! Form::submit('删除', ['class' => 'btn-danger']) !!}
+                </div>
+            </div>
+            {!! Form::close() !!}
+        </div>
     </div>
 @stop

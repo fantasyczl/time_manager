@@ -114,7 +114,22 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::find($id);
+
+        if ($task == null) {
+            abort(404);
+        }
+
+        $task->delete();
+
+        $preTask = Task::orderBy('start_time', 'desc')->first();
+
+        if ($preTask && $preTask->duration != 0) {
+            $preTask->duration = 0;
+            $preTask->save();
+        }
+
+        return redirect('/tasks')->with('successes', 'Delete successful!');
     }
 
 

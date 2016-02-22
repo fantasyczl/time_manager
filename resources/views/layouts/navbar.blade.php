@@ -17,6 +17,9 @@
             <li class="{{ strpos($_SERVER['REQUEST_URI'], '/date') !== false ? 'active' : '' }}">
                 <a href="/date">日期</a>
             </li>
+            <li class="{{ strpos($_SERVER['REQUEST_URI'], '/schedules') !== false ? 'active' : '' }}">
+                <a href="/schedules">SCHEDULES</a>
+            </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

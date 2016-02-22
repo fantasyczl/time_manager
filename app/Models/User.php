@@ -47,4 +47,9 @@ class User extends Model implements AuthenticatableContract,
     public function tasks() {
         return $this->hasMany('App\Models\Task');
     }
+
+
+    public function schedules() {
+        return $this->hasMany('App\Models\Schedule');
+    }
 }
