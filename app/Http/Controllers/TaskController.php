@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Models\Project;
 use App\Models\Task;
+use App\Lib\Utils\TimeUtils;
 
 class TaskController extends Controller
 {
@@ -75,18 +76,20 @@ class TaskController extends Controller
     public function edit($id)
     {
         $user = Auth::user();
-
         $task = Task::find($id);
+        $projects = [];
 
-        $projects = array();
         foreach ($user->projects as $pro) {
             $projects[$pro->id] = $pro->name;
         }
 
-        return view('tasks.edit', [
-            'task' => $task,
-            'projects' => $projects,
-        ]);
+        $isShowDeleteBtn = false;
+        $lastTask = Task::orderBy('start_time', 'desc')->first();
+        if ($lastTask != null && $lastTask->id == $task->id) {
+            $isShowDeleteBtn = true;
+        }
+
+        return view('tasks.edit', compact('task', 'projects', 'isShowDeleteBtn'));
     }
 
     /**
@@ -99,8 +102,12 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         $task = Task::find($id);
-
         $task->project_id = $request->input('project_id');
+
+        if ($request->has('duration')) {
+            $task->duration = $request->duration;
+        }
+
         $task->save();
 
         return redirect('/tasks/' . $id)->with('successMessages', '修改成功');
@@ -137,24 +144,19 @@ class TaskController extends Controller
         $user = Auth::user();
 
         if (!$request->has('project_id'))
-            return response()->json(
-                [
+            return response()->json([
                     'err_code' => 1,
                     'message' => '缺少参数',
-                ]
-            );
+                ]);
 
         $projectId = $request->input('project_id');
-
         $project = Project::find($projectId);
 
         if ($project == null)
-            return response()->json(
-                [
+            return response()->json([
                     'err_code' => 2,
                     'message' => '参数错误',
-                ]
-            );
+                ]);
 
         $dateTime = date('Y-m-d H:i:s');
 
@@ -167,10 +169,17 @@ class TaskController extends Controller
 
             if ($isMatch && isset($match[0]) && $match[0] == $dateTime) {
                 $dateTime .= ':00';
-                $dateTime = \App\Lib\Utils\TimeUtils::GetUTCTime($dateTime);
+                $dateTime = TimeUtils::GetUTCTime($dateTime);
             } else {
                 $dateTime = date('Y-m-d H:i:s');
             }
+        }
+
+        if (strtotime($dateTime) > time()) {
+            return response()->json([
+                'err_code' => 2,
+                'message' => '时间错误',
+            ]);
         }
 
         $preTask = $user->tasks()
@@ -180,12 +189,10 @@ class TaskController extends Controller
 
         if ($preTask != null) {
             if ($preTask->project_id == $project->id)
-                return response()->json(
-                    [
+                return response()->json([
                         'err_code' => 3,
                         'message' => '任务重复',
-                    ]
-                );
+                    ]);
 
             $preTask->calculateDuration($dateTime);
         }
@@ -194,7 +201,7 @@ class TaskController extends Controller
         $task = new Task();
         $task->project_id = $project->id;
         $task->user_id = $user->id;
-        $task->start_time = $dateTime;//date('Y-m-d H:i:s');
+        $task->start_time = $dateTime;
         $task->save();
 
         return response()->json([

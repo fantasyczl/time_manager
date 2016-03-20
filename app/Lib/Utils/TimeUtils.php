@@ -85,10 +85,10 @@ class TimeUtils {
             $str .= $hours . '小时';
 
         if ($mins > 0 || $hours > 0)
-            $str .= $mins . '分';
+            $str .= sprintf("%02d分", $mins);
 
         if ($sec > 0)
-            $str .= $sec .'秒';
+            $str .= sprintf("%02d秒", $sec);
 
         return  $str;
     }
@@ -115,5 +115,10 @@ class TimeUtils {
         $end->tz = self::TZ_UTC;
 
         return [$begin, $end];
+    }
+
+
+    public static function timeRemainingToday($str = null) {
+        
     }
 }

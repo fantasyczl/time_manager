@@ -25,7 +25,11 @@
             <div class="form-group">
                 <label class="col-xs-3 control-label" for="">时长</label>
                 <div class="col-xs-5">
-                    {!! Form::text('duration', $task->duration, ['class' => 'form-control']) !!}
+                    @if ($isShowDeleteBtn)
+                        {!! Form::text('duration', $task->duration, ['class' => 'form-control']) !!}
+                    @else
+                        <div class="form-control">{{ $task->duration }}</div>
+                    @endif
                 </div>
             </div>
 
@@ -37,14 +41,16 @@
 
         {!! Form::close() !!}
 
+        @if ($isShowDeleteBtn)
         <div class="delete">
             {!! Form::open(['url' => '/tasks/' . $task->id, 'method' => 'DELETE']) !!}
             <div class="form-group">
                 <div class="col-xs-offset-8">
-                    {!! Form::submit('删除', ['class' => 'btn-danger']) !!}
+                    {!! Form::submit('删除', ['class' => 'btn btn-danger']) !!}
                 </div>
             </div>
             {!! Form::close() !!}
         </div>
+        @endif
     </div>
 @stop

@@ -54,4 +54,6 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::resource('schedules', 'ScheduleController');
+
+    Route::resource('test', 'TestController');
 });
