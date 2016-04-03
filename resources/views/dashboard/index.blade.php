@@ -62,6 +62,12 @@
             else
                 obj.css('display', 'none')
         }
+
+        $(function() {
+            $("input[name=task_date]").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        })
     </script>
 @stop
 
@@ -94,7 +100,7 @@
                     ?>
 
                     <div class="col-xs-5 col-md-5">
-                        <input class="form-control" type="date" name="task_date" value="{{ $taskDate }}">
+                        <input class="form-control" type="text" name="task_date" value="{{ $taskDate }}">
                     </div>
 
                     <div class="col-xs-5 col-md-5">

@@ -143,6 +143,11 @@ class TaskController extends Controller
     public function ajaxAddTask(Request $request) {
         $user = Auth::user();
 
+        $this->validate($request, [
+            'project_id' => 'required|integer',
+            'date_time' => 'date',
+        ]);
+
         if (!$request->has('project_id'))
             return response()->json([
                     'err_code' => 1,

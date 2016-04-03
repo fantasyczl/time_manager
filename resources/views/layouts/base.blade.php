@@ -20,6 +20,10 @@
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+        <link rel="stylesheet" href="/bower_components/jquery-ui/themes/smoothness/theme.css">
+        <link rel="stylesheet" href="/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css">
+        <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
+
         @yield ('js')
 
     </head>

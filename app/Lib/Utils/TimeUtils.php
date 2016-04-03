@@ -63,7 +63,7 @@ class TimeUtils {
 
     public static function durationForHuman($seconds) {
         if (empty($seconds))
-            return null;
+            return '0分';
 
         $hours = $mins = $sec = 0;
 

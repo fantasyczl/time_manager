@@ -33,6 +33,7 @@
         <tr>
             <th>项目名</th>
             <th>描述</th>
+            <th>投入时间</th>
             <th>添加日期</th>
         </tr>
 
@@ -41,11 +42,12 @@
                 <td>
                     <a href="/projects/{{ $project->id }}">{{ $project->name }}</a>
                 </td>
-
                 <td>
                     {{ mb_substr($project->description, 0, 10) }}
                 </td>
-
+                <td>
+                    {{ $project->spendTimeForHuman() }}
+                </td>
                 <td>
                     {{ $project->created_at }}
                 </td>
