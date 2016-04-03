@@ -6,9 +6,12 @@
 
 @section ('content')
     <div class="task">
-        <a href="/tasks/{{ $task->id }}/edit">编辑</a>
 
-        <h2>Task: {{ $task->project->name }}</h2>
+        <div class="title">
+            <h2>Task: {{ $task->project->name }}</h2>
+            <a href="/tasks/{{ $task->id }}/edit">编辑</a>
+        </div>
+
         <div class="row">
             <div class="col-xs-3">
                 <label for="">项目名称</label>

@@ -11,18 +11,11 @@
 
 @section ('content')
     <div class="title">
-        <h2>项目</h2>
+        <h2>{{ $project->name }}</h2>
         <a href="/projects/{{ $project->id }}/edit">编辑</a>
     </div>
 
     <div class="project">
-        <div class="row">
-            <div class="col-xs-3"><label for="">项目名</label></div>
-            <div class="col-xs-5">
-                <label>{{ $project->name }}</label>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-xs-3"><label for="">描述</label></div>
             <div class="col-xs-5">
