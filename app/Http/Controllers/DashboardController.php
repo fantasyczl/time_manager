@@ -21,15 +21,10 @@ class DashboardController extends Controller
         $user = Auth::user();
         $tasks = $user->tasks()
             ->orderBy('start_time', 'desc')
-            ->take(20)
+            ->take(10)
             ->get();
 
-        $projects = $user->projects->all();
-
-        usort($projects, function($a, $b) {
-            $diff = $a->spendTimeInDay() - $b->spendTimeInDay();
-            return -$diff;
-        });
+        $projects = $this->spendTimeInDayProjects($user);
 
         $projectArray = array();
         $projectArray[''] = '-';
@@ -44,6 +39,24 @@ class DashboardController extends Controller
             'projects' => $projects,
             'selectProjects' => $projectArray,
         ]);
+    }
+
+    private function spendTimeInDayProjects($user)
+    {
+        $projects = $user->projects->all();
+
+        usort($projects, function($a, $b) {
+            $diff = $a->spendTimeInDay() - $b->spendTimeInDay();
+            return -$diff;
+        });
+
+        foreach ($projects as $k => $project) {
+            if ($project->spendTimeInDay() == 0) {
+                unset($projects[$k]);
+            }
+        }
+
+        return $projects;
     }
 
     /**
