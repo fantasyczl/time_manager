@@ -73,8 +73,10 @@
                     @foreach ($timeArr as $key => $value)
                         <tr>
                             <td>
-                                {{ $key }}
-                                {{ \App\Lib\Utils\TimeUtils::GetLocalWeekDay($key) }}
+                                <a href="/date/{{str_replace('-', '/', $key)}}">
+                                    {{ $key }}
+                                    {{ \App\Lib\Utils\TimeUtils::GetLocalWeekDay($key) }}
+                                </a>
                             </td>
                             <td>
                                 {{ $value }}
