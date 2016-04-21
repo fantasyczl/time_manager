@@ -22,11 +22,17 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
 
         $projects = $user->projects;
+
+        if ($request->has('spendTime') && $request->spendTime == 'desc') {
+            $projects = $projects->sort(function($a, $b) {
+                return $b->spendTime() - $a->spendTime();
+            });
+        }
 
         return view('projects.index',[
             'projects' => $projects,

@@ -13,13 +13,25 @@
 
 
 @section ('js')
-   <script src="/bower_components/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    <script src="/bower_components/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 
     <script>
-        $(function() {
-            $('.project_row').sortable();
-            $('.project_row').disableSelection();
-        });
+        function orderBy() {
+            var url = curUrl();
+            url += "?spendTime=desc";
+
+            window.location = url;
+        }
+
+        function curUrl() {
+            var url = window.location.href;
+            var index = url.indexOf('?');
+            if (index == -1) {
+                return url;
+            } else {
+                return url.substring(0, index);
+            }
+        }
     </script>
 @stop
 
@@ -33,7 +45,9 @@
         <tr>
             <th>项目名</th>
             <th>描述</th>
-            <th>投入时间</th>
+            <th>
+                <a href="javascript:void(0);" onclick="orderBy();">投入时间</a>
+            </th>
             <th>添加日期</th>
         </tr>
 

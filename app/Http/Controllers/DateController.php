@@ -53,8 +53,9 @@ class DateController extends Controller {
             $diff = $a->spendTimeInDay($dateStr) - $b->spendTimeInDay($dateStr);
             return -$diff;
         });
-        $projects = array_filter($projects, function($project) {
-            return $project->spendTimeInDay() > 0;
+
+        $projects = array_filter($projects, function($project) use ($dateStr) {
+            return $project->spendTimeInDay($dateStr) > 0;
         });
 
         $params['projects'] = $projects;
