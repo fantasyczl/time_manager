@@ -9,13 +9,31 @@
         #time_label {
             display: none;
         }
+        .vertical-center {
+            min-height: 50px;  /* Fallback for browsers do NOT support vh unit */
+
+            display: flex;
+            align-items: center;
+        }
+        .day {
+            font-size: 2em;
+            display: relative;
+            top: 50%;
+            transform: translateY(15%);
+        }
     </style>
 @stop
 
 @section ('content')
     <div class="row">
-        <div class="col-xs-12" >
+        <div class="col-xs-4">
+            <a class="vertical-center btn pull-right day left-day" href="/date/{{ $beforeDay }}">Before</a>
+        </div>
+        <div class="col-xs-4" >
             <h2 style="text-align: center">{{ $date }}</h2>
+        </div>
+        <div class="vertical-center col-xs-4">
+            <a class="btn day right-day" href="/date/{{ $afterDay }}">After</a>
         </div>
     </div>
 

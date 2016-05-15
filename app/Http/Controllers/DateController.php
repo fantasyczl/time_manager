@@ -40,7 +40,9 @@ class DateController extends Controller {
         $params = array();
 
         $dateStr = sprintf('%s-%s-%s', $y, $m, $d);
-        $params['date'] = $dateStr;
+        $params['date'] = TimeUtils::GetLocalDate($dateStr);
+        $params['beforeDay'] = date('Y/m/d', strtotime("-1 day", strtotime($params['date'])));
+        $params['afterDay'] = date('Y/m/d', strtotime('+1 day', strtotime($params['date'])));
 
         $duration = TimeUtils::GetDurationDay($dateStr);
         $tasks = $user->tasks()
