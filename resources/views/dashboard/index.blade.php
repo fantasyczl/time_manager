@@ -23,8 +23,6 @@
                 dateFormat: "yy-mm-dd"
             });
 
-
-            $('input[name=task_time]').mask('00:00')
         })
     </script>
 @stop
@@ -62,7 +60,7 @@
                     </div>
 
                     <div class="col-xs-5 col-md-5">
-                        <input type="time" name="task_time" class="form-control" value="{{ $taskTime }}">
+                        <input id="task_time" type="time" name="task_time" class="form-control" value="{{ $taskTime }}">
                     </div>
                 </div>
 
