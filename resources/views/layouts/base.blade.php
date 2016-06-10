@@ -2,6 +2,7 @@
 <html lang="zh-Hans">
     <head>
         <meta charset="UTF-8">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="shortcut icon" href="/favicon.ico" type="image/png">
 
@@ -23,6 +24,14 @@
         <link rel="stylesheet" href="/bower_components/jquery-ui/themes/smoothness/theme.css">
         <link rel="stylesheet" href="/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css">
         <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
+
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
 
         @yield ('js')
 

@@ -26,7 +26,7 @@ class ProjectController extends Controller
     {
         $user = Auth::user();
 
-        $projects = $user->projects;
+        $projects = $user->projects()->orderBy('order')->get();
 
         if ($request->has('spendTime') && $request->spendTime == 'desc') {
             $projects = $projects->sort(function($a, $b) {
@@ -178,5 +178,21 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ajaxSaveOrders(Request $request)
+    {
+        $ids = $request->ids;
+
+        if (empty($ids) || !is_array($ids)) {
+            return response()->json(['message' => '缺少参数']);
+        }
+        
+        for ($i = 0; $i < count($ids); $i++) {
+            $id = $ids[$i];
+            Project::where('id', $id)->update(['order' => $i]);
+        }
+
+        return response()->json(['status' => 0, 'message' => 'success']);
     }
 }

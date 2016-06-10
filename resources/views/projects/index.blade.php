@@ -32,14 +32,51 @@
                 return url.substring(0, index);
             }
         }
+
+        function saveOrders() {
+            var ids = [];
+            $("#project_list_body > tr").each(function() {
+                var id = $(this).attr("id");
+                ids.push(id);
+            });
+
+            $.ajax({
+                url: '/projects/ajax/saveOrders',
+                type: 'PUT',
+                data: {ids: ids},
+                success: function(data) {
+                    if (data['status'] == 0) {
+                        alert("保存成功");
+                    }
+                },
+                error: function(error) {
+                    alert(JSON.stringify(error));
+                }
+            });
+        }
+    
+        $(function() {
+            $("#project_list_body").sortable({
+                update: function(event, ui) {
+                    //saveOrders();
+                }
+            });
+            $("#project_list_body").disableSelection();
+        });
+
     </script>
 @stop
 
 
 @section ('content')
-    <div><a href="/projects/create">添加项目</a></div>
+    <div>
+        <a href="/projects/create">添加项目</a>
+        <a class="btnkbtn-normal" href="#" onclick="saveOrders(); return false;">保存顺序</a>
+    </div>
 
-    <h2>我的项目列表</h2>
+    <div>
+        <h2>我的项目列表</h2>
+    </div>
 
     <table id="project_list" class="table table-striped">
         <tr>
@@ -51,21 +88,23 @@
             <th>添加日期</th>
         </tr>
 
-        @foreach ($projects as $project)
-            <tr class="project_row">
-                <td>
-                    <a href="/projects/{{ $project->id }}">{{ $project->name }}</a>
-                </td>
-                <td>
-                    {{ mb_substr($project->description, 0, 10) }}
-                </td>
-                <td>
-                    {{ $project->spendTimeForHuman() }}
-                </td>
-                <td>
-                    {{ $project->created_at }}
-                </td>
-            </tr>
-        @endforeach
+        <tbody id="project_list_body">
+            @foreach ($projects as $project)
+                <tr class="project_row" id="{{ $project->id }}">
+                    <td>
+                        <a href="/projects/{{ $project->id }}">{{ $project->name }}</a>
+                    </td>
+                    <td>
+                        {{ mb_substr($project->description, 0, 10) }}
+                    </td>
+                    <td>
+                        {{ $project->spendTimeForHuman() }}
+                    </td>
+                    <td>
+                        {{ $project->created_at }}
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 @stop

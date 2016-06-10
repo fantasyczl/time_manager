@@ -37,6 +37,7 @@ Route::group(['prefix' => 'password'], function() {
 Route::group(['middleware' => 'auth'], function() {
     Route::get('dashboard', 'DashboardController@index');
     Route::resource('projects', 'ProjectController');
+    Route::put('projects/ajax/saveOrders', 'ProjectController@ajaxSaveOrders');
 
     Route::post('tasks/ajax/addTask', 'TaskController@ajaxAddTask');
     Route::resource('tasks', 'TaskController');
