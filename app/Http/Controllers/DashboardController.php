@@ -26,6 +26,7 @@ class DashboardController extends Controller
 
         $projects = $this->spendTimeInDayProjects($user);
 
+        // project array for select
         $projectArray = array();
         $projectArray[''] = '-';
 
