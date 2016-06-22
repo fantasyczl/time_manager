@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Validator;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use Auth;
-use Validator;
-
 use App\Models\Project;
-
 use App\Lib\Utils\TimeUtils;
-use Carbon\Carbon;
 
 
 class ProjectController extends Controller
@@ -194,5 +191,41 @@ class ProjectController extends Controller
         }
 
         return response()->json(['status' => 0, 'message' => 'success']);
+    }
+
+    public function ajaxShowTasksInDay(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|integer|exists:projects,id',
+            'date' => 'date',
+        ]);
+
+        $project = Project::find($request->id);
+
+        if ($request->has('date')) {
+            $localDate = $request->date;
+        } else {
+            $localDate = TimeUtils::GetLocalDate(date('Y-m-d'));
+        }
+
+        $region = TimeUtils::GetDurationDay($localDate);
+
+        $tasks = $project->tasks()->whereBetween('start_time', $region)->get();
+
+        $data = [];
+        foreach ($tasks as $task) {
+            $item = [
+                'id' => $task->id,
+                'start_time' => TimeUtils::GetLocalTime($task->start_time),
+                'duration' => TimeUtils::durationForHuman($task->duration),
+            ];
+            $data[] = $item;
+        }
+
+        return response()->json([
+            'err_code' => 0, 
+            'message' => 'ok',
+            'data' => $data]
+        );
     }
 }

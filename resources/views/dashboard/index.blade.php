@@ -5,6 +5,7 @@
 @stop
 
 @section ('css')
+    <link rel="stylesheet" href="/css/project.css">
     <style>
         #time_label {
             display: none;
@@ -16,6 +17,7 @@
 @section ('js')
     <script src="/bower_components/jquery-mask-plugin/src/jquery.mask.js"></script>
     <script src="/js/dashboard.js"></script>
+    <script src="/js/project.js"></script>
 
     <script>
         $(function() {
@@ -133,7 +135,15 @@
                                             <label for="">{{ $project->name }}</label>
                                         </a>
                                     </div>
-                                    <div class="col-xs-5"><label for="">共{{ $project->spendTimeInDayForHuman() }}</label></div>
+                                    <div class="col-xs-5">
+                                        <label for="">
+                                            <a href="javascript:void(0);" onclick="showProjectTasksInDay({{ $project->id }});">
+                                                共{{ $project->spendTimeInDayForHuman() }}
+                                            </a>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="{{ $project->id }}_tasks" class="row project-task-in-day" style="display: none;">
                                 </div>
                             @endforeach
                         </div>
