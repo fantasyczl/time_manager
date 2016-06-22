@@ -1,5 +1,9 @@
-function showProjectTasksInDay(id, date = null)
+function showProjectTasksInDay(id, date)
 {
+    if (typeof(date) === 'undefined') {
+        date = null;
+    }
+
     var display = $('#'+id+'_tasks').css('display');
 
     if (display == 'none') {
@@ -9,8 +13,12 @@ function showProjectTasksInDay(id, date = null)
     }
 }
 
-function requestProjectTaskInDay(id, date = null)
+function requestProjectTaskInDay(id, date)
 {
+    if (typeof(date) === 'undefined') {
+        date = null;
+    }
+
     $.ajax({
         url: '/projects/ajax/showTasksInDay',
         type: 'GET',
