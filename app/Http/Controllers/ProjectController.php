@@ -219,6 +219,11 @@ class ProjectController extends Controller
                 'start_time' => TimeUtils::GetLocalTime($task->start_time),
                 'duration' => TimeUtils::durationForHuman($task->duration),
             ];
+
+            if ($task->duration == 0) {
+                $item['duration'] = TimeUtils::durationForHuman(TimeUtils::diff($task->start_time));
+            }
+
             $data[] = $item;
         }
 
