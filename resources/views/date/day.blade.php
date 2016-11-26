@@ -5,6 +5,7 @@
 @stop
 
 @section ('css')
+    <link rel="stylesheet" href="/css/project.css">
     <style>
         #time_label {
             display: none;
@@ -22,6 +23,10 @@
             transform: translateY(20%);
         }
     </style>
+@stop
+
+@section ('js')
+    <script src="/js/project.js"></script>
 @stop
 
 @section ('content')
@@ -91,8 +96,15 @@
                                             <label for="">{{ $project->name }}</label>
                                         </a>
                                     </div>
-                                    <div class="col-xs-5"><label for="">共{{ $project->spendTimeInDayForHuman($date) }}</label></div>
+                                    <div class="col-xs-5">
+                                        <label for="">
+                                            <a href="javascript:void(0);" onclick="showProjectTasksInDay({{ $project->id }}, '{{ $date }}');">
+                                                共{{ $project->spendTimeInDayForHuman($date) }}
+                                            </a>
+                                        </label>
+                                    </div>
                                 </div>
+                                <div id="{{ $project->id }}_tasks" class="row project-task-in-day" style="display: none;"></div>
                             @endforeach
                         </div>
                     </div>

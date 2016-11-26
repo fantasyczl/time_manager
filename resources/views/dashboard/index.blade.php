@@ -143,8 +143,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div id="{{ $project->id }}_tasks" class="row project-task-in-day" style="display: none;">
-                                </div>
+                                <div id="{{ $project->id }}_tasks" class="row project-task-in-day" style="display: none;"></div>
                             @endforeach
                         </div>
                     </div>
