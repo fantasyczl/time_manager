@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
 
-        if (config('app.debug') && !$e instanceof AuthenticationException) {
+        if (config('app.debug') && $this->shouldReport($e)) {
             return $this->renderExceptionWithWhoops($e);
         }
 

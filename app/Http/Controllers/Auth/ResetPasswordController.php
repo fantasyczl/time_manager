@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Http\Request;
-use Mail;
 
-class PasswordController extends Controller
+class ResetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -18,15 +16,19 @@ class PasswordController extends Controller
     | and uses a simple trait to include this behavior. You're free to
     | explore this trait and override any methods you wish to tweak.
     |
-    */
+     */
 
     use ResetsPasswords;
 
-
-    protected $redirectTo = '/dashboard';
+    /**
+     * Where to redirect users after resetting their password.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/home';
 
     /**
-     * Create a new password controller instance.
+     * Create a new controller instance.
      *
      * @return void
      */
@@ -34,6 +36,4 @@ class PasswordController extends Controller
     {
         $this->middleware('guest');
     }
-
-
 }
