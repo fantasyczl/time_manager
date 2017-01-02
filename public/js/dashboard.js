@@ -37,12 +37,12 @@ $(function() {
 function addTask() {
     var id = $('select[name=task_name]').val();
     if (!id) {
-        alert('请选择项目');
+        alert('Please select project!');
         return false;
     }
 
     $('#add_task_btn').addClass('disabled');
-    $('#add_task_btn').text('添加中...');
+    $('#add_task_btn').text('Adding...');
 
     var date = $('input[name=task_date]').val();
     var time = $('input[name=task_time]').val();

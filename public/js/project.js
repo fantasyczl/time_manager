@@ -46,7 +46,7 @@ function showTasks(id, response)
         var item = data[i];
         var sub = '<div class="row">';
         sub += '<div class="col-xs-5">' + item['start_time'] + '</div>';
-        sub += '<div class="col-xs-5">持续' + item['duration'] + '</div>';
+        sub += '<div class="col-xs-5">Continue ' + item['duration'] + '</div>';
         sub += '</div>';
 
         s += sub;

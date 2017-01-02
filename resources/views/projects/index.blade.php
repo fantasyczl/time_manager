@@ -2,7 +2,7 @@
 
 
 @section ('title')
-    项目列表
+    Projects
 @stop
 
 
@@ -70,12 +70,12 @@
 
 @section ('content')
     <div>
-        <a href="/projects/create">添加项目</a>
+        <a href="/projects/create">Add Project</a>
         <a class="btnkbtn-normal" href="#" onclick="saveOrders(); return false;">保存顺序</a>
     </div>
 
     <div>
-        <h2>我的项目列表</h2>
+        <h2>Project List</h2>
     </div>
 
     <table id="project_list" class="table table-striped">

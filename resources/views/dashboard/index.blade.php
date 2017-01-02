@@ -32,22 +32,22 @@
 @section ('content')
 
     <div class="col-xs-12 col-md-6">
-        <h2>时间线</h2>
+        <h2>Time Line</h2>
         <hr>
 
         <div class="tasks">
-            <h4>添加任务</h4>
+            <h4>Add Task</h4>
 
             <div class="add-task">
                 <div class="row">
                     <div class="col-xs-12">
-                        <a href="javascript:void(0);" onclick="showTimeLabel();">显示时间</a>
+                        <a href="javascript:void(0);" onclick="showTimeLabel();">Show Time</a>
                     </div>
                 </div>
 
                 <div class="row" id="time_label">
                     <div class="col-xs-2 col-md-2">
-                        <label for="">时间</label>
+                        <label for="">Time</label>
                     </div>
 
                     <?php
@@ -80,9 +80,9 @@
 
             <div class="row">
                 <div class="col-xs-1"><label for="">ID</label></div>
-                <div class="col-xs-4"><label for="">开始时间</label></div>
-                <div class="col-xs-3"><label for="">项目名</label></div>
-                <div class="col-xs-4"><label for="">持续时间</label></div>
+                <div class="col-xs-4"><label for="">Start Time</label></div>
+                <div class="col-xs-3"><label for="">Project Name</label></div>
+                <div class="col-xs-4"><label for="">Duration</label></div>
             </div>
 
             @foreach ($tasks as $task)
@@ -96,9 +96,9 @@
                     </div>
                     <div class="col-xs-4">
                         @if (empty($task->duration))
-                            已进行{{ \App\Lib\Utils\TimeUtils::diffForHuman($task->start_time) }}
+                            Going On {{ \App\Lib\Utils\TimeUtils::diffForHuman($task->start_time) }}
                         @else
-                            持续{{ \App\Lib\Utils\TimeUtils::durationForHuman($task->duration)}}
+                            Continue {{ \App\Lib\Utils\TimeUtils::durationForHuman($task->duration)}}
                         @endif
                     </div>
                 </div>
@@ -107,7 +107,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div>
-                        <a href="/tasks">更多</a>
+                        <a href="/tasks">More</a>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
     </div>
 
     <div class="col-xs-12 col-md-6">
-        <h2>每天情况统计</h2>
+        <h2>A Day Of Statistical</h2>
         <hr>
         
         <div class="statistics">

@@ -4,11 +4,12 @@ namespace App\Lib\Utils;
 
 use Carbon\Carbon;
 
-class TimeUtils {
+class TimeUtils
+{
     const TZ_LOCAL = 'Asia/Shanghai';
     const TZ_UTC = 'UTC';
 
-    public static $weekdays = array(
+    public static $weekdaysZH = array(
         '星期日',
         '星期一',
         '星期二',
@@ -18,8 +19,18 @@ class TimeUtils {
         '星期六',
     );
 
+    public static $weekdays = array(
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+    );
 
-    public static function GetLocalDate($timeStr = null) {
+    public static function GetLocalDate($timeStr = null)
+    {
         $tz = self::TZ_LOCAL;
         $time = new Carbon($timeStr);
         $time->tz = $tz;
@@ -27,7 +38,8 @@ class TimeUtils {
         return $time->toDateString();
     }
     
-    public static function GetLocalTime($timeStr, $tz = null) {
+    public static function GetLocalTime($timeStr, $tz = null)
+    {
         if (empty($tz))
             $tz = 'Asia/Shanghai';
 
@@ -37,7 +49,8 @@ class TimeUtils {
     }
 
 
-    public static function GetUTCTime($timeStr, $tz = null) {
+    public static function GetUTCTime($timeStr, $tz = null)
+    {
         if (empty($tz))
             $tz = 'Asia/Shanghai';
 
@@ -47,13 +60,15 @@ class TimeUtils {
     }
 
 
-    public static function diff($timeStr) {
+    public static function diff($timeStr)
+    {
         $duration = time() - strtotime($timeStr);
         return $duration;
     }
 
 
-    public static function diffForHuman($timeStr) {
+    public static function diffForHuman($timeStr)
+    {
         $duration = self::diff($timeStr);
         $str = self::durationForHuman($duration);
         
@@ -61,7 +76,8 @@ class TimeUtils {
     }
 
 
-    public static function durationForHuman($seconds) {
+    public static function durationForHuman($seconds)
+    {
         if (empty($seconds))
             return '0分';
 
@@ -94,7 +110,8 @@ class TimeUtils {
     }
 
 
-    public static function GetLocalWeekDay($timeStr = null) {
+    public static function GetLocalWeekDay($timeStr = null)
+    {
         $tz = self::TZ_LOCAL;
         $time = new Carbon($timeStr);
         $time->tz = $tz;
@@ -105,7 +122,8 @@ class TimeUtils {
     }
 
 
-    public static function GetDurationDay($timeStr = null, $tz = self::TZ_LOCAL) {
+    public static function GetDurationDay($timeStr = null, $tz = self::TZ_LOCAL)
+    {
         $begin = new Carbon($timeStr, $tz);
 
         $end = clone $begin;
@@ -118,7 +136,8 @@ class TimeUtils {
     }
 
 
-    public static function timeRemainingToday($str = null) {
+    public static function timeRemainingToday($str = null)
+    {
         
     }
 }
