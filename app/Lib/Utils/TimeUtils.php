@@ -98,13 +98,13 @@ class TimeUtils
 
         $str = '';
         if ($hours > 0)
-            $str .= $hours . '小时';
+            $str .= $hours . ' h ';
 
         if ($mins > 0 || $hours > 0)
-            $str .= sprintf("%02d分", $mins);
+            $str .= sprintf("%02d min ", $mins);
 
         if ($sec > 0)
-            $str .= sprintf("%02d秒", $sec);
+            $str .= sprintf("%02d s", $sec);
 
         return  $str;
     }

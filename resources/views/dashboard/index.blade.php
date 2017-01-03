@@ -71,7 +71,11 @@
                         {!! Form::select('task_name', $selectProjects, null, array('class' => 'form-control')) !!}
                     </div>
                     <div class="col-xs-5">
-                        <a id="add_task_btn" class="btn btn-success" style="width:100%;" href="javascript:void(0);" onclick="addTask();">添加</a>
+                        <a id="add_task_btn"
+                           class="btn btn-success"
+                           style="width:100%;"
+                           href="javascript:void(0);"
+                           onclick="addTask();">Add Task</a>
                     </div>
                 </div>
             </div>

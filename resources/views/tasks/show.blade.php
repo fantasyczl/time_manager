@@ -9,24 +9,24 @@
 
         <div class="title">
             <h2>Task: {{ $task->project->name }}</h2>
-            <a href="/tasks/{{ $task->id }}/edit">编辑</a>
+            <a href="/tasks/{{ $task->id }}/edit">Edit</a>
         </div>
 
         <div class="row">
             <div class="col-xs-3">
-                <label for="">项目名称</label>
+                <label for="">Project Name</label>
             </div>
             <div class="col-xs-9">{{ $task->project->name }}</div>
         </div>
         <div class="row">
             <div class="col-xs-3">
-                <label for="">开始时间</label>
+                <label for="">Start At</label>
             </div>
             <div class="col-xs-9">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
         </div>
         <div class="row">
             <div class="col-xs-3">
-                <label for="">持续时间</label>
+                <label for="">Continue</label>
             </div>
             <div class="col-xs-9">
                 @if ($task->duration)

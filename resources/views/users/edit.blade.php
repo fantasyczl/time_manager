@@ -1,7 +1,7 @@
 @extends ('layouts.main')
 
 @section ('title')
-    时间线
+    Time Line
 @stop
 
 @section ('content')
@@ -14,7 +14,7 @@
             {!! csrf_field() !!}
             
             <div class="form-group">
-                <label class="col-xs-3 control-label" for="">名字</label>
+                <label class="col-xs-3 control-label" for="">Name</label>
                 <div class="col-xs-5">
                     {!! Form::text('name', $user->name, ['class' => 'form-control']) !!}
                 </div>
@@ -29,7 +29,7 @@
 
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-9">
-                    <button class="btn btn-success" type="submit">保存</button>
+                    <button class="btn btn-success" type="submit">Save</button>
                 </div>
             </div>
 

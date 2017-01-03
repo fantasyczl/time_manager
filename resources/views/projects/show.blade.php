@@ -12,22 +12,22 @@
 @section ('content')
     <div class="title">
         <h2>{{ $project->name }}</h2>
-        <a href="/projects/{{ $project->id }}/edit">编辑</a>
+        <a href="/projects/{{ $project->id }}/edit">Edit</a>
     </div>
 
     <div class="project">
         <div class="row">
-            <div class="col-xs-3"><label for="">描述</label></div>
+            <div class="col-xs-3"><label for="">Description</label></div>
             <div class="col-xs-5">
                 {{ $project->description }}
             </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-3"><label for="">创建于</label></div>
+            <div class="col-xs-3"><label for="">Created At</label></div>
             <div class="col-xs-5">
                 {{ \App\Lib\Utils\TimeUtils::GetLocalTime($project->created_at) }}
-                （距今{{ \App\Lib\Utils\TimeUtils::diffForHuman($project->created_at) }}）
+                （Before Present {{ \App\Lib\Utils\TimeUtils::diffForHuman($project->created_at) }}）
             </div>
         </div>
     </div>
@@ -35,20 +35,20 @@
     <hr>
 
     <div class="time-seciton">
-        <h4>时间投入</h4>
+        <h4>Spend Time</h4>
 
         <div class="row">
-            <div class="col-xs-6 col-md-1"><label for="">共投入时间</label></div>
+            <div class="col-xs-3 col-md-1"><label for="">TotalSpend</label></div>
 
-            <div class="col-xs-6 col-md-2">
+            <div class="col-xs-3 col-md-2">
                 {{ $project->spendTimeForHuman() }}
             </div>
 
-            <div class="col-xs-6 col-md-1">
-                跨度{{count($timeArr)}}天 
+            <div class="col-xs-3 col-md-2">
+                Span {{count($timeArr)}} Day
             </div>
 
-            <div class="col-xs-6 col-md-2">
+            <div class="col-xs-3 col-md-2">
                 <?php
                 $durationPerDay = 0;
                 if (count($timeArr) > 0) {
@@ -56,7 +56,7 @@
                 }
                 $timeHuman = \App\Lib\Utils\TimeUtils::durationForHuman($durationPerDay);
                 ?>
-                平均每天{{ $timeHuman }}
+                AvgDaily {{ $timeHuman }}
             </div>
 
         </div>
@@ -66,8 +66,8 @@
 
                 <table class="table table-striped">
                     <tr>
-                        <th>日期</th>
-                        <th>投入时间</th>
+                        <th>Date</th>
+                        <th>Spend</th>
                     </tr>
 
                     @foreach ($timeArr as $key => $value)

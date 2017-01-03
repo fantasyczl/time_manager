@@ -46,7 +46,7 @@
                 data: {ids: ids},
                 success: function(data) {
                     if (data['status'] == 0) {
-                        alert("保存成功");
+                        alert("Save Success!");
                     }
                 },
                 error: function(error) {
@@ -71,7 +71,7 @@
 @section ('content')
     <div>
         <a href="/projects/create">Add Project</a>
-        <a class="btnkbtn-normal" href="#" onclick="saveOrders(); return false;">保存顺序</a>
+        <a class="btnkbtn-normal" href="#" onclick="saveOrders(); return false;">Save Order</a>
     </div>
 
     <div>
@@ -80,12 +80,12 @@
 
     <table id="project_list" class="table table-striped">
         <tr>
-            <th>项目名</th>
-            <th>描述</th>
+            <th>Project</th>
+            <th>Description</th>
             <th>
-                <a href="javascript:void(0);" onclick="orderBy();">投入时间</a>
+                <a href="javascript:void(0);" onclick="orderBy();">Spend Time</a>
             </th>
-            <th>添加日期</th>
+            <th>Created Time</th>
         </tr>
 
         <tbody id="project_list_body">

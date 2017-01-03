@@ -1,7 +1,7 @@
 @extends ('layouts.main')
 
 @section ('title')
-    时间线
+    Time Line
 @stop
 
 @section ('content')
@@ -19,9 +19,9 @@
                 </div>
                 <div class="col-xs-4">
                     @if (empty($task->duration))
-                        已进行{{ \App\Lib\Utils\TimeUtils::diffForHuman($task->start_time) }}
+                        Going On {{ \App\Lib\Utils\TimeUtils::diffForHuman($task->start_time) }}
                     @else
-                        持续{{ \App\Lib\Utils\TimeUtils::durationForHuman($task->duration)}}
+                        Continue {{ \App\Lib\Utils\TimeUtils::durationForHuman($task->duration)}}
                     @endif
                 </div>
             </div>

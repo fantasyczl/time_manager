@@ -10,12 +10,12 @@
     <div class="user">
         <div class="title">
             <h2>User: {{ $user->name }}</h2>
-            <a href="/users/{{ $user->id }}/edit">编辑</a>
+            <a href="/users/{{ $user->id }}/edit">Edit</a>
         </div>
 
         <div class="row">
             <div class="col-xs-3">
-                <label for="">用户名</label>
+                <label for="">User Name</label>
             </div>
             <div class="col-xs-9">{{ $user->name }}</div>
         </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="row">
             <div class="col-xs-3">
-                <label for="">创建时间</label>
+                <label for="">Created At</label>
             </div>
             <div class="col-xs-9">
                 {{ $user->created_at }}
