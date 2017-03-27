@@ -71,6 +71,7 @@
 @section ('content')
     <div>
         <a href="/projects/create">Add Project</a>
+        &nbsp;&middot;&nbsp;
         <a class="btnkbtn-normal" href="#" onclick="saveOrders(); return false;">Save Order</a>
     </div>
 
