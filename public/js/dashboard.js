@@ -61,7 +61,6 @@ function addTask() {
         success: function(data) {
             if (data['err_code'] !== 0) {
                 alert(data['message']);
-                location.reload();
                 return false;
             }
 
