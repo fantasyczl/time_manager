@@ -62,7 +62,7 @@ class ProjectController extends Controller
         $project->user_id = $user->id;
         $project->name = $request->input('name');
 
-        if ($request->has('description'))
+        if ($request->has('description') && !empty($request->description))
             $project->description = $request->input('description');
 
         $project->save();
@@ -156,7 +156,7 @@ class ProjectController extends Controller
 
         $project->name = $request->input('name');
 
-        if ($request->has('description'))
+        if ($request->has('description') && !empty($request->description))
             $project->description = $request->input('description');
         else
             $project->description = null;

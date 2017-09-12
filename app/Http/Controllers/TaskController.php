@@ -104,7 +104,7 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->project_id = $request->input('project_id');
 
-        if ($request->has('duration')) {
+        if ($request->has('duration') && !empty($request->duration)) {
             $task->duration = $request->duration;
         }
 
@@ -148,7 +148,7 @@ class TaskController extends Controller
             'date_time' => 'date|nullable',
         ]);
 
-        if (!$request->has('project_id'))
+        if (!$request->has('project_id') || empty($request->project_id))
             return response()->json([
                     'err_code' => 1,
                     'message' => '缺少参数',
