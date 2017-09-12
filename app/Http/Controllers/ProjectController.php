@@ -197,12 +197,12 @@ class ProjectController extends Controller
     {
         $this->validate($request, [
             'id' => 'required|integer|exists:projects,id',
-            'date' => 'date',
+            'date' => 'date|nullable',
         ]);
 
         $project = Project::find($request->id);
 
-        if ($request->has('date')) {
+        if ($request->has('date') && !empty($request->date)) {
             $localDate = $request->date;
         } else {
             $localDate = TimeUtils::GetLocalDate(date('Y-m-d'));
