@@ -145,7 +145,7 @@ class TaskController extends Controller
 
         $this->validate($request, [
             'project_id' => 'required|integer',
-            'date_time' => 'date',
+            'date_time' => 'date|nullable',
         ]);
 
         if (!$request->has('project_id'))
@@ -165,7 +165,7 @@ class TaskController extends Controller
 
         $dateTime = date('Y-m-d H:i:s');
 
-        if ($request->has('date_time')) {
+        if ($request->has('date_time') && !empty($request->date_time)) {
             $dateTime = $request->input('date_time');
             $pattern = '/\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}/';
 
