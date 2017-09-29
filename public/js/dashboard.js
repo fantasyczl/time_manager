@@ -68,6 +68,7 @@ function addTask() {
         },
         error: function(data) {
             alert(JSON.stringify(data));
+            location.reload();
         }
     });
 }
