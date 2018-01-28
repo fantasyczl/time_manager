@@ -41,8 +41,7 @@ function addTask() {
         return false;
     }
 
-    $('#add_task_btn').addClass('disabled');
-    $('#add_task_btn').text('Adding...');
+    setAddTaskBtn(true);
 
     var date = $('input[name=task_date]').val();
     var time = $('input[name=task_time]').val();
@@ -61,6 +60,7 @@ function addTask() {
         success: function(data) {
             if (data['err_code'] !== 0) {
                 alert(data['message']);
+                setAddTaskBtn(false);
                 return false;
             }
 
@@ -98,3 +98,13 @@ function setInputSelection(input, startPos, endPos) {
     }
 }
 
+
+function setAddTaskBtn(isActive) {
+    if (isActive) {
+        $('#add_task_btn').addClass('disabled');
+        $('#add_task_btn').text('Adding...');
+    } else {
+        $('#add_task_btn').removeClass('disabled');
+        $('#add_task_btn').text('Add');
+    }
+}
