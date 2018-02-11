@@ -57,20 +57,20 @@
                     $taskTime = date('H:i', $localTime);
                     ?>
 
-                    <div class="col-xs-5 col-md-5">
+                    <div class="col-xs-12 col-md-5">
                         <input class="form-control" type="text" name="task_date" value="{{ $taskDate }}">
                     </div>
 
-                    <div class="col-xs-5 col-md-5">
+                    <div class="col-xs-12 col-md-5">
                         <input id="task_time" type="time" name="task_time" class="form-control" value="{{ $taskTime }}">
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-7">
+                    <div class="col-xs-12 col-md-7">
                         {!! Form::select('task_name', $selectProjects, null, array('class' => 'form-control')) !!}
                     </div>
-                    <div class="col-xs-5">
+                    <div class="col-xs-12">
                         <a id="add_task_btn"
                            class="btn btn-success"
                            style="width:100%;"
@@ -83,22 +83,24 @@
             <hr>
 
             <div class="row">
-                <div class="col-xs-1"><label for="">ID</label></div>
-                <div class="col-xs-4"><label for="">Start Time</label></div>
-                <div class="col-xs-3"><label for="">Project Name</label></div>
-                <div class="col-xs-4"><label for="">Duration</label></div>
+                <div class="col-xs-2 col-md-1"><label for="">ID</label></div>
+                <div class="col-xs-4 col-md-4"><label for="">Start Time</label></div>
+                <div class="col-xs-2 col-md-3"><label for="">Project Name</label></div>
+                <div class="col-xs-4 col-md-4"><label for="">Duration</label></div>
             </div>
 
             @foreach ($tasks as $task)
                 <div class="row">
-                    <div class="col-xs-1"><a href="/tasks/{{ $task->id }}">{{ $task->id }}</a></div>
-                    <div class="col-xs-4">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
-                    <div class="col-xs-3">
+                    <div class="col-xs-2 col-md-1">
+                        <a href="/tasks/{{ $task->id }}">{{ $task->id }}</a>
+                    </div>
+                    <div class="col-xs-4 col-md-4">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
+                    <div class="col-xs-2 col-md-3">
                         <a href="/projects/{{ $task->project->id }}">
                             {{ $task->project->name }}
                         </a>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-4 col-md-4">
                         @if (empty($task->duration))
                             Going On {{ \App\Lib\Utils\TimeUtils::diffForHuman($task->start_time) }}
                         @else
@@ -116,7 +118,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="col-xs-12 col-md-6">
