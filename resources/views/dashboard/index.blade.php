@@ -70,7 +70,7 @@
                     <div class="col-xs-12 col-md-7">
                         {!! Form::select('task_name', $selectProjects, null, array('class' => 'form-control')) !!}
                     </div>
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 col-md-5">
                         <a id="add_task_btn"
                            class="btn btn-success"
                            style="width:100%;"
