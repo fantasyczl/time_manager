@@ -20,6 +20,13 @@
             </div>
 
             <div class="form-group">
+                <label class="col-xs-3 control-label" for="">Status</label>
+                <div class="col-xs-5">
+                    {!! Form::select('status', \App\Models\Project::STATUSES, null, array('class' => 'form-control')) !!}
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="col-xs-3 control-label" for="">Description</label>
                 <div class="col-xs-5">
                     <textarea id="" name="description" cols="30" rows="5" class="form-control"></textarea>

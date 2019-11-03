@@ -8,16 +8,21 @@ use App\Lib\Utils\TimeUtils;
 
 class Project extends Model
 {
+    const STATUS_USEING = 0;  // 正常使用
+    const STATUS_HIDE = 1; // 不常使用
+
+    const STATUSES = [
+        self::STATUS_USEING => '正常使用',
+        self::STATUS_HIDE   => '不常使用',
+    ];
 
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
 
-
     public function tasks() {
         return $this->hasMany('App\Models\Task');
     }
-
 
     public function spendTimeInDay($day = null) {
         $tz = 'Asia/Shanghai';
@@ -76,9 +81,13 @@ class Project extends Model
         return $total;
     }
 
-
     public function spendTimeForHuman() {
         $total = $this->spendTime();
         return TimeUtils::durationForHuman($total);
+    }
+
+    public function statusDisplay()
+    {
+        return self::STATUSES[$this->status] ?? '未知';
     }
 }

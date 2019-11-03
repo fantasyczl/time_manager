@@ -23,7 +23,10 @@ class ProjectController extends Controller
     {
         $user = Auth::user();
 
-        $projects = $user->projects()->orderBy('order')->get();
+        $projects = $user->projects()
+                         ->where('status', Project::STATUS_USEING)
+                         ->orderBy('order')
+                         ->get();
 
         if ($request->has('spendTime') && $request->spendTime == 'desc') {
             $projects = $projects->sort(function($a, $b) {
@@ -61,6 +64,7 @@ class ProjectController extends Controller
         $project = new Project;
         $project->user_id = $user->id;
         $project->name = $request->input('name');
+        $project->status = $request->input('status');
 
         if ($request->has('description') && !empty($request->description))
             $project->description = $request->input('description');
@@ -147,6 +151,7 @@ class ProjectController extends Controller
             $request->all(),
             [
                 'name' => 'required|max:100',
+                'status' => 'required|int',
             ]
         );
 
@@ -155,11 +160,13 @@ class ProjectController extends Controller
         }
 
         $project->name = $request->input('name');
+        $project->status = $request->input('status');
 
-        if ($request->has('description') && !empty($request->description))
+        if ($request->has('description') && !empty($request->description)) {
             $project->description = $request->input('description');
-        else
+        } else {
             $project->description = null;
+        }
 
         $project->save();
 

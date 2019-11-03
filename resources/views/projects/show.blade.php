@@ -24,6 +24,13 @@
         </div>
 
         <div class="row">
+            <div class="col-xs-3"><label for="">Status</label></div>
+            <div class="col-xs-5">
+                {{ $project->statusDisplay() }}
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-xs-3"><label for="">Created At</label></div>
             <div class="col-xs-5">
                 {{ \App\Lib\Utils\TimeUtils::GetLocalTime($project->created_at) }}
