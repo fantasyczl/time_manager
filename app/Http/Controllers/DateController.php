@@ -24,16 +24,11 @@ class DateController extends Controller {
         return redirect($url);
     }
 
-
     public function getYear() {
-        
     }
-
 
     public function getMonth() {
-        
     }
-
 
     public function getDay($y, $m, $d) {
         $user = Auth::user();
@@ -64,5 +59,4 @@ class DateController extends Controller {
 
         return view('date.day', $params);
     }
-
 }
