@@ -32,6 +32,7 @@ $(function() {
             }
         }
     });
+    loadLeastTaskList();
 });
 
 function addTask() {
@@ -107,4 +108,42 @@ function setAddTaskBtn(isActive) {
         $('#add_task_btn').removeClass('disabled');
         $('#add_task_btn').text('Add');
     }
+}
+
+function loadLeastTaskList() {
+    $.ajax({
+        url: '/time_manage_go/tasks',
+        type: 'GET',
+        success: function(data) {
+            if (data['errNo'] !== 0) {
+                alert(data['errMsg']);
+                return false;
+            }
+
+            renderTaskList(data['data']['tasks'])
+
+        },
+        error: function(data) {
+            alert(JSON.stringify(data));
+        }
+    });
+}
+
+function renderTaskList(taskList) {
+    s = '';
+    for (let i = 0; i < taskList.length; i++) {
+        task = taskList[i]
+        s +=  '<div class="row">'
+            + '<div class="col-xs-2 col-md-1">'
+            + '<a href="/tasks/' + task.ID + '">' + task.ID + '</a>'
+            + '</div>'
+            + '<div class="col-xs-4 col-md-4">' + task.StartTime + '</div>'
+            + '<div class="col-xs-2 col-md-3">'
+            + '<a href="/projects/{{ $task->project->id }}">' + task.ProjectName + '</a>'
+            + '</div>'
+            + '<div class="col-xs-4 col-md-4">' + task.DurationDesc + '</div>'
+            + '</div>';
+    }
+
+    $("#task_list_body").html(s);
 }

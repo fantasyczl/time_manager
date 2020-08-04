@@ -16,7 +16,7 @@
 
 @section ('js')
     <script src="/bower_components/jquery-mask-plugin/src/jquery.mask.js"></script>
-    <script src="/js/dashboard.js?v=1"></script>
+    <script src="/js/dashboard.js?v=2"></script>
     <script src="/js/project.js"></script>
 
     <script>
@@ -89,26 +89,8 @@
                 <div class="col-xs-4 col-md-4"><label for="">Duration</label></div>
             </div>
 
-            @foreach ($tasks as $task)
-                <div class="row">
-                    <div class="col-xs-2 col-md-1">
-                        <a href="/tasks/{{ $task->id }}">{{ $task->id }}</a>
-                    </div>
-                    <div class="col-xs-4 col-md-4">{{ \App\Lib\Utils\TimeUtils::GetLocalTime($task->start_time) }}</div>
-                    <div class="col-xs-2 col-md-3">
-                        <a href="/projects/{{ $task->project->id }}">
-                            {{ $task->project->name }}
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-md-4">
-                        @if (empty($task->duration))
-                            Going On {{ \App\Lib\Utils\TimeUtils::diffForHuman($task->start_time) }}
-                        @else
-                            Continue {{ \App\Lib\Utils\TimeUtils::durationForHuman($task->duration)}}
-                        @endif
-                    </div>
-                </div>
-            @endforeach
+            <div id="task_list_body">
+            </div>
 
             <div class="row">
                 <div class="col-xs-12">
