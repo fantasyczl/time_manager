@@ -19,7 +19,6 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $projects = $this->spendTimeInDayProjects($user);
 
         // project array for select
         $projectArray = array();
@@ -31,27 +30,8 @@ class DashboardController extends Controller
 
         return view('dashboard.index', [
             'user' => $user,
-            'projects' => $projects,
             'selectProjects' => $projectArray,
         ]);
-    }
-
-    private function spendTimeInDayProjects($user)
-    {
-        $projects = $user->projects->all();
-
-        usort($projects, function($a, $b) {
-            $diff = $a->spendTimeInDay() - $b->spendTimeInDay();
-            return -$diff;
-        });
-
-        foreach ($projects as $k => $project) {
-            if ($project->spendTimeInDay() == 0) {
-                unset($projects[$k]);
-            }
-        }
-
-        return $projects;
     }
 
     /**

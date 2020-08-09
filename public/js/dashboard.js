@@ -186,7 +186,7 @@ function renderTodayProjectList(projectList) {
             + '<div class="col-xs-5">'
             + '<label for="">'
             + '<a href="javascript:void(0);" onclick="showProjectTasksInDay(' + project.id + ');">'
-            + porject.durationHuman
+            + project.durationHuman
             + '</a>'
             + '</label>'
             + '</div>'

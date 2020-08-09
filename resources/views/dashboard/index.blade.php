@@ -110,28 +110,10 @@
             <div class="row">
                 <div class="col-xs-12 col-md-12">
                     <div class="panel panel-primary">
-                        <div id="today_project_title" class="panel-heading">
-                            <h4>{{ \App\Lib\Utils\TimeUtils::GetLocalDate() }} {{ \App\Lib\Utils\TimeUtils::GetLocalWeekDay()}}</h4>
+                        <div id="today_project_title_div" class="panel-heading">
+                            <h4 id="today_project_title"></h4>
                         </div>
-
                         <div id="today_project_list" class="panel-body">
-                            @foreach ($projects as $project)
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <a href="/projects/{{ $project->id }}">
-                                            <label for="">{{ $project->name }}</label>
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <label for="">
-                                            <a href="javascript:void(0);" onclick="showProjectTasksInDay({{ $project->id }});">
-                                                共{{ $project->spendTimeInDayForHuman() }}
-                                            </a>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div id="{{ $project->id }}_tasks" class="row project-task-in-day" style="display: none;"></div>
-                            @endforeach
                         </div>
                     </div>
                 </div>
