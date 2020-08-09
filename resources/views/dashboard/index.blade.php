@@ -110,11 +110,11 @@
             <div class="row">
                 <div class="col-xs-12 col-md-12">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
+                        <div id="today_project_title" class="panel-heading">
                             <h4>{{ \App\Lib\Utils\TimeUtils::GetLocalDate() }} {{ \App\Lib\Utils\TimeUtils::GetLocalWeekDay()}}</h4>
                         </div>
 
-                        <div class="panel-body">
+                        <div id="today_project_list" class="panel-body">
                             @foreach ($projects as $project)
                                 <div class="row">
                                     <div class="col-xs-5">

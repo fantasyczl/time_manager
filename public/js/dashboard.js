@@ -1,7 +1,7 @@
-$(function() {
+$(function () {
     var inputTimes = 0;
     var taskTimeId = $('input[name=task_time]');
-    taskTimeId.on('click', function() {
+    taskTimeId.on('click', function () {
         inputTimes = 0;
         var val = $(this).val();
 
@@ -18,7 +18,7 @@ $(function() {
         setInputSelection(e, 0, 2);
     });
 
-    taskTimeId.on('keyup', function(e) {
+    taskTimeId.on('keyup', function (e) {
         inputTimes++;
         if (inputTimes >= 2) {
             var e = document.getElementById($(this).attr('id'));
@@ -33,6 +33,7 @@ $(function() {
         }
     });
     loadLeastTaskList();
+    loadTodayProjects();
 });
 
 function addTask() {
@@ -58,7 +59,7 @@ function addTask() {
         url: '/tasks/ajax/addTask',
         type: 'POST',
         data: {'project_id': id, 'date_time': dateTime},
-        success: function(data) {
+        success: function (data) {
             if (data['err_code'] !== 0) {
                 alert(data['message']);
                 setAddTaskBtn(false);
@@ -67,7 +68,7 @@ function addTask() {
 
             location.reload();
         },
-        error: function(data) {
+        error: function (data) {
             alert(JSON.stringify(data));
             location.reload();
         }
@@ -77,7 +78,7 @@ function addTask() {
 
 function showTimeLabel() {
     var obj = $('#time_label');
-    if (obj.css('display') == 'none') 
+    if (obj.css('display') == 'none')
         obj.css('display', 'block')
     else
         obj.css('display', 'none')
@@ -114,7 +115,7 @@ function loadLeastTaskList() {
     $.ajax({
         url: '/time_manage_go/tasks',
         type: 'GET',
-        success: function(data) {
+        success: function (data) {
             if (data['errNo'] !== 0) {
                 alert(data['errMsg']);
                 return false;
@@ -123,7 +124,7 @@ function loadLeastTaskList() {
             renderTaskList(data['data']['tasks'])
 
         },
-        error: function(data) {
+        error: function (data) {
             alert(JSON.stringify(data));
         }
     });
@@ -133,7 +134,7 @@ function renderTaskList(taskList) {
     s = '';
     for (let i = 0; i < taskList.length; i++) {
         task = taskList[i]
-        s +=  '<div class="row">'
+        s += '<div class="row">'
             + '<div class="col-xs-2 col-md-1">'
             + '<a href="/tasks/' + task.ID + '">' + task.ID + '</a>'
             + '</div>'
@@ -146,4 +147,53 @@ function renderTaskList(taskList) {
     }
 
     $("#task_list_body").html(s);
+}
+
+function loadTodayProjects() {
+    $.ajax({
+        url: '/time_manage_go/projects/day',
+        type: 'GET',
+        success: function (data) {
+            if (data['errNo'] !== 0) {
+                alert(data['errMsg']);
+                return false;
+            }
+
+            renderTodayProjectTitle(data['data']['day'], data['data']['weekday']);
+            renderTodayProjectList(data['data']['list']);
+        },
+        error: function (data) {
+            alert(JSON.stringify(data));
+        }
+    });
+}
+
+function renderTodayProjectTitle(day, weekday) {
+    $("#today_project_title").html(day + " " + weekday);
+}
+
+function renderTodayProjectList(projectList) {
+    s = ''
+    for (let i = 0; i < projectList.length; i++) {
+        project = projectList[i];
+
+        s += '<div class="row">'
+            + '<div class="col-xs-5">'
+            + '<a href="/projects/' + project.id + '">'
+            + '<label for="">' + project.name + '</label>'
+            + '</a>'
+            + '</div>'
+            + '<div class="col-xs-5">'
+            + '<label for="">'
+            + '<a href="javascript:void(0);" onclick="showProjectTasksInDay(' + project.id + ');">'
+            + porject.durationHuman
+            + '</a>'
+            + '</label>'
+            + '</div>'
+            + '</div>'
+            + '<div id="' + project.id + ' +_tasks" class="row project-task-in-day" style="display: none;"></div>'
+        ;
+    }
+
+    $("#today_project_list").html(s);
 }
