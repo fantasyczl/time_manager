@@ -140,7 +140,7 @@ function renderTaskList(taskList) {
             + '</div>'
             + '<div class="col-xs-4 col-md-4">' + task.StartTime + '</div>'
             + '<div class="col-xs-2 col-md-3">'
-            + '<a href="/projects/{{ $task->project->id }}">' + task.ProjectName + '</a>'
+            + '<a href="/projects/' + task.ProjectID + '">' + task.ProjectName + '</a>'
             + '</div>'
             + '<div class="col-xs-4 col-md-4">' + task.DurationDesc + '</div>'
             + '</div>';
@@ -186,12 +186,12 @@ function renderTodayProjectList(projectList) {
             + '<div class="col-xs-5">'
             + '<label for="">'
             + '<a href="javascript:void(0);" onclick="showProjectTasksInDay(' + project.id + ');">'
-            + project.durationHuman
+            + '共' + project.durationHuman
             + '</a>'
             + '</label>'
             + '</div>'
             + '</div>'
-            + '<div id="' + project.id + ' +_tasks" class="row project-task-in-day" style="display: none;"></div>'
+            + '<div id="' + project.id + '_tasks" class="row project-task-in-day" style="display: none;"></div>'
         ;
     }
 
