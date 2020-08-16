@@ -56,12 +56,12 @@ function addTask() {
         dateTime = date + ' ' + time;
 
     $.ajax({
-        url: '/tasks/ajax/addTask',
+        url: '/time_manage_go/tasks',
         type: 'POST',
         data: {'project_id': id, 'date_time': dateTime},
         success: function (data) {
-            if (data['err_code'] !== 0) {
-                alert(data['message']);
+            if (data['errNo'] !== 0) {
+                alert(data['errMsg']);
                 setAddTaskBtn(false);
                 return false;
             }

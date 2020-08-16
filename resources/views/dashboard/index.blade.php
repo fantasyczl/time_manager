@@ -16,7 +16,7 @@
 
 @section ('js')
     <script src="/bower_components/jquery-mask-plugin/src/jquery.mask.js"></script>
-    <script src="/js/dashboard.js?v=2"></script>
+    <script src="/js/dashboard.js?v=4"></script>
     <script src="/js/project.js"></script>
 
     <script>
