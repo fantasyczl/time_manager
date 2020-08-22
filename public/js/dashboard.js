@@ -145,13 +145,13 @@ function renderTaskList(taskList) {
         task = taskList[i]
         s += '<div class="row">'
             + '<div class="col-xs-2 col-md-1">'
-            + '<a href="/tasks/' + task.ID + '">' + task.ID + '</a>'
+            + '<a href="/tasks/' + task.id + '">' + task.id + '</a>'
             + '</div>'
-            + '<div class="col-xs-4 col-md-4">' + task.StartTime + '</div>'
+            + '<div class="col-xs-4 col-md-4">' + task.startTime + '</div>'
             + '<div class="col-xs-2 col-md-3">'
-            + '<a href="/projects/' + task.ProjectID + '">' + task.ProjectName + '</a>'
+            + '<a href="/projects/' + task.projectID + '">' + task.projectName + '</a>'
             + '</div>'
-            + '<div class="col-xs-4 col-md-4">' + task.DurationDesc + '</div>'
+            + '<div class="col-xs-4 col-md-4">' + task.durationDesc + '</div>'
             + '</div>';
     }
 
