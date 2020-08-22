@@ -63,6 +63,7 @@ function addTask() {
             if (data['errNo'] !== 0) {
                 alert(data['errMsg']);
                 setAddTaskBtn(false);
+                processErrNo(data['errNo'])
                 return false;
             }
 
@@ -118,6 +119,7 @@ function loadLeastTaskList() {
         success: function (data) {
             if (data['errNo'] !== 0) {
                 alert(data['errMsg']);
+                processErrNo(data['errNo'])
                 return false;
             }
 
@@ -128,6 +130,13 @@ function loadLeastTaskList() {
             alert(JSON.stringify(data));
         }
     });
+}
+
+function processErrNo(errNo) {
+    if (errNo == 1) {
+        location.reload();
+        return
+    }
 }
 
 function renderTaskList(taskList) {
@@ -156,6 +165,7 @@ function loadTodayProjects() {
         success: function (data) {
             if (data['errNo'] !== 0) {
                 alert(data['errMsg']);
+                processErrNo(data['errNo'])
                 return false;
             }
 
