@@ -1,7 +1,7 @@
 @extends ('layouts.main')
 
 @section ('title')
-    {{ $project->name }}
+    Project Detail
 @stop
 
 @section ('css')
@@ -9,32 +9,33 @@
     </style>
 @stop
 
+@section ('js')
+    <script>
+        var projectID =<?php echo $id;?>
+    </script>
+    <script src="/js/project.js?v=2"></script>
+@stop
+
 @section ('content')
-    <div class="title">
-        <h2>{{ $project->name }}</h2>
-        <a href="/projects/{{ $project->id }}/edit">Edit</a>
+    <div class="title" id="project-title">
     </div>
 
     <div class="project">
         <div class="row">
             <div class="col-xs-3"><label for="">Description</label></div>
-            <div class="col-xs-5">
-                {{ $project->description }}
+            <div class="col-xs-5" id="project-desc">
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-3"><label for="">Status</label></div>
-            <div class="col-xs-5">
-                {{ $project->statusDisplay() }}
+            <div class="col-xs-5" id="project-status">
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-3"><label for="">Created At</label></div>
-            <div class="col-xs-5">
-                {{ \App\Lib\Utils\TimeUtils::GetLocalTime($project->created_at) }}
-                （Before Present {{ \App\Lib\Utils\TimeUtils::diffForHuman($project->created_at) }}）
+            <div class="col-xs-5" id="project-time">
             </div>
         </div>
     </div>
@@ -47,49 +48,29 @@
         <div class="row">
             <div class="col-xs-3 col-md-1"><label for="">TotalSpend</label></div>
 
-            <div class="col-xs-3 col-md-2">
-                {{ $project->spendTimeForHuman() }}
+            <div class="col-xs-3 col-md-2" id="project-spendtime">
             </div>
 
-            <div class="col-xs-3 col-md-2">
-                Span {{count($timeArr)}} Day
+            <div class="col-xs-3 col-md-2" id="project-spandays">
             </div>
 
-            <div class="col-xs-3 col-md-2">
-                <?php
-                $durationPerDay = 0;
-                if (count($timeArr) > 0) {
-                    $durationPerDay = $project->spendTime() / count($timeArr);
-                }
-                $timeHuman = \App\Lib\Utils\TimeUtils::durationForHuman($durationPerDay);
-                ?>
-                AvgDaily {{ $timeHuman }}
+            <div class="col-xs-3 col-md-2" id="project-avgtime">
             </div>
-
         </div>
 
         <div class="row">
             <div class="col-xs-12 col-md-6">
 
-                <table class="table table-striped">
-                    <tr>
-                        <th>Date</th>
-                        <th>Spend</th>
-                    </tr>
-
-                    @foreach ($timeArr as $key => $value)
+                <table class="table table-striped" id="daylist-table">
+                    <thead>
                         <tr>
-                            <td>
-                                <a href="/date/{{str_replace('-', '/', $key)}}">
-                                    {{ $key }}
-                                    {{ \App\Lib\Utils\TimeUtils::GetLocalWeekDay($key) }}
-                                </a>
-                            </td>
-                            <td>
-                                {{ $value }}
-                            </td>
+                            <th>Date</th>
+                            <th>Spend</th>
                         </tr>
-                    @endforeach
+                    </thead>
+
+                    <tbody id="daylist-tbody">
+                    </tbody>
                 </table>
 
             </div>

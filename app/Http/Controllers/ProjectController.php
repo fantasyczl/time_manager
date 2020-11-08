@@ -82,35 +82,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = Project::find($id);
-
-        if ($project == null)
-            abort(404);
-
-        $spendTime = array();
-
-        $firstTask = $project->tasks()
-            ->orderBy('start_time', 'asc')->first();
-
-        $timeArr = array();
-
-        if ($firstTask) {
-            $today = new Carbon(TimeUtils::GetLocalDate());
-            $firstDay = new Carbon(TimeUtils::GetLocalDate($firstTask->start_time));
-
-            do {
-                $dayStr = $firstDay->toDateString();
-                $time = $project->spendTimeInDayForHuman($dayStr);
-                $timeArr[$dayStr] = $time;
-                $firstDay->addDay();
-            } while($today->gte($firstDay));
-        }
-
-        $timeArr = array_reverse($timeArr);
-
         return view('projects.show', [
-            'project' => $project,
-            'timeArr' => $timeArr,
+            'id' => $id,
         ]);
     }
 
