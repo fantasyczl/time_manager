@@ -1,7 +1,3 @@
-$(function () {
-    loadProject(projectID);
-});
-
 function showProjectTasksInDay(id, date) {
     if (typeof (date) === 'undefined') {
         date = null;

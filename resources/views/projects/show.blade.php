@@ -10,10 +10,14 @@
 @stop
 
 @section ('js')
+    <script src="/js/project.js?v=3"></script>
     <script>
         var projectID =<?php echo $id;?>
+
+        $(function () {
+            loadProject(projectID);
+        });
     </script>
-    <script src="/js/project.js?v=2"></script>
 @stop
 
 @section ('content')
