@@ -61,10 +61,13 @@ class ProjectController extends Controller
         if ($user == null)
             abort(404);
 
+        $order = $user->projects()->max('order');
+
         $project = new Project;
         $project->user_id = $user->id;
         $project->name = $request->input('name');
         $project->status = $request->input('status');
+        $project->order = $order + 1;
 
         if ($request->has('description') && !empty($request->description))
             $project->description = $request->input('description');
