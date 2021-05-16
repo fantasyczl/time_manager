@@ -86,6 +86,8 @@ function showTimeLabel() {
 }
 
 function setInputSelection(input, startPos, endPos) {
+    // TODO
+    return;
     if (input.createTextRange) {
         var range = e.createTextRange();
         range.collapse(true);
