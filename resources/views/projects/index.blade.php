@@ -82,6 +82,7 @@
     <table id="project_list" class="table table-striped">
         <tr>
             <th>Project</th>
+            <th>Status</th>
             <th>Description</th>
             <th>
                 <a href="javascript:void(0);" onclick="orderBy();">Spend Time</a>
@@ -94,6 +95,9 @@
                 <tr class="project_row" id="{{ $project->id }}">
                     <td>
                         <a href="/projects/{{ $project->id }}">{{ $project->name }}</a>
+                    </td>
+                    <td>
+                        {{ \App\Models\Project::STATUSES[$project->status] ?? 'Unknown' }}
                     </td>
                     <td>
                         {{ mb_substr($project->description, 0, 10) }}

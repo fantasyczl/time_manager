@@ -24,7 +24,8 @@ class ProjectController extends Controller
         $user = Auth::user();
 
         $projects = $user->projects()
-                         ->where('status', Project::STATUS_USEING)
+                         //->where('status', Project::STATUS_USEING)
+                         ->orderBy('status')
                          ->orderBy('order')
                          ->get();
 
