@@ -43,6 +43,11 @@ class User extends Model implements AuthenticatableContract,
                     ->orderBy('order');
     }
 
+    public function allProjects() {
+        return $this->hasMany('App\Models\Project')
+                    ->orderBy('status')
+                    ->orderBy('order');
+    }
 
     public function tasks() {
         return $this->hasMany('App\Models\Task');

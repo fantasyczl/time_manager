@@ -23,11 +23,7 @@ class ProjectController extends Controller
     {
         $user = Auth::user();
 
-        $projects = $user->projects()
-                         //->where('status', Project::STATUS_USEING)
-                         ->orderBy('status')
-                         ->orderBy('order')
-                         ->get();
+        $projects = $user->allProjects()->get();
 
         if ($request->has('spendTime') && $request->spendTime == 'desc') {
             $projects = $projects->sort(function($a, $b) {
