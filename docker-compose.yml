@@ -11,6 +11,6 @@ services:
       - php
 
   php:
-    image: php-fpm-lavaral:1
+    image: php-fpm-lavaral:7.4.0
     volumes:
       - ./:/code

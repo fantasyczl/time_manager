@@ -16,7 +16,7 @@
 
 @section ('js')
     <script src="/bower_components/jquery-mask-plugin/src/jquery.mask.js"></script>
-    <script src="/js/dashboard.js?v=7"></script>
+    <script src="/js/dashboard.js?v=8"></script>
     <script src="/js/project.js"></script>
 
     <script>
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="col-xs-12 col-md-5">
-                        <input id="task_time" type="time" name="task_time" class="form-control" value="{{ $taskTime }}">
+                        <input id="task_time" type="text" name="task_time" class="form-control" value="{{ $taskTime }}">
                     </div>
                 </div>
 

@@ -1,15 +1,16 @@
 $(function () {
-    var inputTimes = 0;
-    var taskTimeId = $('input[name=task_time]');
+    let inputTimes = 0;
+    let taskTimeId = $('input[name=task_time]');
+
     taskTimeId.on('click', function () {
         inputTimes = 0;
-        var val = $(this).val();
+        let val = $(this).val();
 
         if (val === '') {
             return;
         }
 
-        var e = document.getElementById($(this).attr('id'));
+        let e = document.getElementById($(this).attr('id'));
         if (!e) {
             alert('e == null');
             return;
@@ -18,26 +19,31 @@ $(function () {
         setInputSelection(e, 0, 2);
     });
 
-    taskTimeId.on('keyup', function (e) {
+    taskTimeId.on('keyup', function (event) {
         inputTimes++;
+
+        console.log(event)
+        console.log('inputTimes: ', inputTimes)
         if (inputTimes >= 2) {
-            var e = document.getElementById($(this).attr('id'));
+            let e = document.getElementById($(this).attr('id'));
             if (!e) {
                 alert('e == null');
                 return;
             }
 
-            if (inputTimes % 2 == 0) {
+            if (inputTimes % 2 === 0) {
                 setInputSelection(e, 3, 5);
+                inputTimes = 0
             }
         }
     });
+
     loadLeastTaskList();
     loadTodayProjects();
 });
 
 function addTask() {
-    var id = $('select[name=task_name]').val();
+    let id = $('select[name=task_name]').val();
     if (!id) {
         alert('Please select project!');
         return false;
@@ -78,18 +84,17 @@ function addTask() {
 
 
 function showTimeLabel() {
-    var obj = $('#time_label');
-    if (obj.css('display') == 'none')
-        obj.css('display', 'block')
-    else
-        obj.css('display', 'none')
+    let obj = $('#time_label');
+    if (obj.css('display') === 'none') {
+        obj.css('display', 'block');
+    } else {
+        obj.css('display', 'none');
+    }
 }
 
 function setInputSelection(input, startPos, endPos) {
-    // TODO
-    return;
     if (input.createTextRange) {
-        var range = e.createTextRange();
+        var range = input.createTextRange();
         range.collapse(true);
         range.moveEnd('character', endPos);
         range.moveStart('character', startPos);
@@ -100,6 +105,8 @@ function setInputSelection(input, startPos, endPos) {
     } else if (typeof input.selectionStart != 'undefined') {
         input.selectionStart = startPos;
         input.selectionEnd = endPos;
+    } else {
+        console.log("neither support", input, startPos, endPos)
     }
 }
 
