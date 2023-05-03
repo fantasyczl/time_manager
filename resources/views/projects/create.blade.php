@@ -4,6 +4,16 @@
     Create Project
 @stop
 
+@section ('js')
+    <script>
+        function submit() {
+
+        }
+
+        $(function () {
+        });
+    </script>
+@stop
 
 @section ('body')
     <div class="container-fluid">

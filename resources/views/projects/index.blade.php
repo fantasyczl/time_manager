@@ -54,6 +54,11 @@
                 }
             });
         }
+
+        function loadProjects() {
+
+
+        }
     
         $(function() {
             $("#project_list_body").sortable({
@@ -62,6 +67,7 @@
                 }
             });
             $("#project_list_body").disableSelection();
+            loadProjects();
         });
 
     </script>
