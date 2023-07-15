@@ -14,13 +14,11 @@
 
 @section ('js')
     <script src="/bower_components/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    <script src="/js/project.js?v=1"></script>
 
     <script>
         function orderBy() {
-            var url = curUrl();
-            url += "?spendTime=desc";
-
-            window.location = url;
+            loadProjects('spendTime=desc')
         }
 
         function curUrl() {
@@ -34,9 +32,9 @@
         }
 
         function saveOrders() {
-            var ids = [];
+            const ids = [];
             $("#project_list_body > tr").each(function() {
-                var id = $(this).attr("id");
+                const id = $(this).attr("id");
                 ids.push(id);
             });
 
@@ -55,9 +53,8 @@
             });
         }
 
-        function loadProjects() {
-
-
+        function loadProjects(query='') {
+            apiProjectList('#project_list_body', query);
         }
     
         $(function() {
@@ -97,25 +94,6 @@
         </tr>
 
         <tbody id="project_list_body">
-            @foreach ($projects as $project)
-                <tr class="project_row" id="{{ $project->id }}">
-                    <td>
-                        <a href="/projects/{{ $project->id }}">{{ $project->name }}</a>
-                    </td>
-                    <td>
-                        {{ \App\Models\Project::STATUSES[$project->status] ?? 'Unknown' }}
-                    </td>
-                    <td>
-                        {{ mb_substr($project->description, 0, 10) }}
-                    </td>
-                    <td>
-                        {{ $project->spendTimeForHuman() }}
-                    </td>
-                    <td>
-                        {{ $project->created_at }}
-                    </td>
-                </tr>
-            @endforeach
         </tbody>
     </table>
 @stop

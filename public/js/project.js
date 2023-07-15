@@ -1,3 +1,47 @@
+/**
+ * Load project list.
+ */
+function apiProjectList(divId, query='') {
+    $.ajax({
+        url: '/time_manage_go/projects/list?' + query,
+        type: 'GET',
+        success: function (data) {
+            if (data['errNo'] !== 0) {
+                alert(data['errMsg']);
+                processErrNo(data['errNo'])
+                return false;
+            }
+
+            let projects = data['data']['projects'];
+            displayProjectList(divId, projects);
+        },
+        error: function (data) {
+            alert(JSON.stringify(data));
+        }
+    });
+}
+
+function displayProjectList(divId, projectList) {
+    let s = '';
+    for (let i = 0; i < projectList.length; i++) {
+        const item = projectList[i];
+        let sub = '<tr className="project_row" id="' + item['id'] + '">' +
+            '<td>' +
+            '<a href="/projects/' + item['id'] + '">' + item['name'] + '</a>' +
+            '</td>' +
+            '<td>' + item['statusTxt'] + '</td>' +
+            '<td>' + item['description'] + '</td>' +
+            '<td>' + item['spendTimeForHuman'] + '</td>' +
+            '<td>' + item['createdAt'] + '</td>';
+        sub += '</tr>';
+
+        s += sub;
+    }
+
+    $(divId).html(s);
+    //$(divId).css('display', 'block');
+}
+
 function showProjectTasksInDay(id, date) {
     if (typeof (date) === 'undefined') {
         date = null;
@@ -5,7 +49,7 @@ function showProjectTasksInDay(id, date) {
 
     var display = $('#' + id + '_tasks').css('display');
 
-    if (display == 'none') {
+    if (display === 'none') {
         requestProjectTaskInDay(id, date);
     } else {
         $('#' + id + '_tasks').css('display', 'none');
@@ -38,10 +82,10 @@ function requestProjectTaskInDay(id, date) {
 function showTasks(id, response) {
     data = response['data'];
 
-    var s = '';
+    let s = '';
     for (let i = 0; i < data.length; i++) {
-        var item = data[i];
-        var sub = '<div class="row">';
+        const item = data[i];
+        let sub = '<div class="row">';
         sub += '<div class="col-xs-5">' + item['start_time'] + '</div>';
         sub += '<div class="col-xs-5">Continue ' + item['duration'] + '</div>';
         sub += '</div>';
@@ -49,8 +93,9 @@ function showTasks(id, response) {
         s += sub;
     }
 
-    $('#' + id + '_tasks').html(s);
-    $('#' + id + '_tasks').css('display', 'block');
+    const taskId = '#' + id + '_tasks';
+    $(taskId).html(s);
+    $(taskId).css('display', 'block');
 }
 
 function loadProject(id) {
@@ -92,7 +137,7 @@ function renderDayList(dayList) {
     let spanDays = "Span " + dayList.length + " Day";
     $("#project-spandays").html(spanDays);
 
-    var rows = '';
+    let rows = '';
     for (let i = 0; i < dayList.length; i++) {
         let item = dayList[i];
         let dayKey = item.day.replaceAll("-", "/")
