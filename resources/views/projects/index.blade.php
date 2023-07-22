@@ -18,13 +18,13 @@
 
     <script>
         function orderBy() {
-            loadProjects('spendTime=desc')
+            loadProjects('orderBy=spendTime&orderDirect=desc')
         }
 
         function curUrl() {
-            var url = window.location.href;
-            var index = url.indexOf('?');
-            if (index == -1) {
+            let url = window.location.href;
+            let index = url.indexOf('?');
+            if (index === -1) {
                 return url;
             } else {
                 return url.substring(0, index);

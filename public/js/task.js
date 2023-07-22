@@ -22,9 +22,8 @@ function loadDetail(id) {
 }
 
 function processErrNo(errNo) {
-    if (errNo == 1) {
+    if (errNo === 1) {
         location.reload();
-        return
     }
 }
 
