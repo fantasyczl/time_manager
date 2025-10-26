@@ -6,3 +6,5 @@ Homestead.json
 *.swp
 .DS_Store
 .phpcd/
+storage/
+.idea/
